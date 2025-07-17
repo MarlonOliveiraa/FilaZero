@@ -33,13 +33,14 @@ export default function InputComponentInputComponent({
 
 const styles = StyleSheet.create({
   container: {
-    width: 396,
+    width: "90%",
+    maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
     flexDirection: "row",
     alignItems: "center",
     borderColor: "#222222",
     borderWidth: 1,
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 10,
     paddingLeft: 22,
     borderRadius: 40,
     marginVertical: 6,
@@ -47,14 +48,14 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   icon: {
-    width: 24,
-    height: 24,
-    marginRight: 10,
+    width: 20,
+    height: 20,
+    marginRight: 4,
+    resizeMode: "contain",
   },
   input: {
     flex: 1,
     fontSize: 16,
-    fontFamily: "Poppins",
     color: "#000000",
   },
 });

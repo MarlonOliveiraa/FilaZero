@@ -3,13 +3,24 @@ import InputComponentInputComponent from "@/components/ui/input-component";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Login() {
+export default function SingUp() {
     return (
         <View style={styles.container}>
             <View>
-                <Text style={styles.text}>Entre com <br/>sua conta</Text>
-                <Text style={styles.subtitle}>Faça login para continuar.</Text>
+                <Text style={styles.text}>Registre-se</Text>
+                <Text style={styles.subtitle}>Faça seu cadastro para continuar.</Text>
             </View>
+
+            <InputComponentInputComponent
+                placeholder="Nome completo"
+                icon={require("@/assets/icons/user.png")}
+            />
+
+            <InputComponentInputComponent
+                placeholder="Telefone"
+                keyboardType="phone-pad"
+                icon={require("@/assets/icons/phone.png")}
+            />
 
             <InputComponentInputComponent
                 placeholder="E-mail"
@@ -22,15 +33,17 @@ export default function Login() {
                 secureTextEntry={true}
                 icon={require("@/assets/icons/senha.png")}
             />
-            <View style={{ width: "90%", maxWidth: 300, alignItems: "flex-end", marginBottom: 32 }}>
-                <Text style={styles.senha}>Esqueci minha senha.</Text>
-            </View>
-
-            <BotaoComponent
-                titulo="Entrar"
+            <InputComponentInputComponent
+                placeholder="Confirme sua senha"
+                secureTextEntry={true}
+                icon={require("@/assets/icons/senha.png")}
             />
 
-            <Text style={styles.cadastro}>Não tem uma conta? Cadastre-se</Text>
+            <BotaoComponent
+                titulo="Cadastrar"
+            />
+
+            <Text style={styles.cadastro}>Já tem uma conta? Entrar</Text>
         </View>
     );
 }

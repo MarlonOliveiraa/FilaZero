@@ -3,12 +3,12 @@ import InputComponentInputComponent from "@/components/ui/input-component";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Login() {
+export default function RecuperarSenha() {
     return (
         <View style={styles.container}>
             <View>
-                <Text style={styles.text}>Entre com <br/>sua conta</Text>
-                <Text style={styles.subtitle}>Faça login para continuar.</Text>
+                <Text style={styles.text}>Recuperar <br/>senha</Text>
+                <Text style={styles.subtitle}>Digite seu e-mail para enviar o código.</Text>
             </View>
 
             <InputComponentInputComponent
@@ -17,20 +17,9 @@ export default function Login() {
                 icon={require("@/assets/icons/email.png")}
             />
 
-            <InputComponentInputComponent
-                placeholder="Senha"
-                secureTextEntry={true}
-                icon={require("@/assets/icons/senha.png")}
-            />
-            <View style={{ width: "90%", maxWidth: 300, alignItems: "flex-end", marginBottom: 32 }}>
-                <Text style={styles.senha}>Esqueci minha senha.</Text>
-            </View>
-
             <BotaoComponent
-                titulo="Entrar"
+                titulo="Enviar código"
             />
-
-            <Text style={styles.cadastro}>Não tem uma conta? Cadastre-se</Text>
         </View>
     );
 }
@@ -49,21 +38,9 @@ const styles = StyleSheet.create ({
         lineHeight: 60,
     },
     subtitle: {
-        fontSize: 16,
-        color: '#222222',
-        fontFamily: 'PoppinsRegular',
-        marginBottom: 96,
-    },
-    senha: {
         fontSize: 12,
         color: '#222222',
         fontFamily: 'PoppinsRegular',
-        marginBottom: 32,
-    },
-    cadastro: {
-        fontSize: 12,
-        color: '#222222',
-        fontFamily: 'PoppinsRegular',
-        marginTop: 8,
+        marginBottom: 72,
     },
 });

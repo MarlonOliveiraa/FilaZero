@@ -4,6 +4,9 @@ module.exports = {
     "./App.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  assets: [
+    './assets/fonts/'
+  ],
   theme: {
     extend: {},
   },

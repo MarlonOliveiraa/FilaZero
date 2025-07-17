@@ -15,18 +15,21 @@ export default function BotaoComponent({ titulo, funcao }: props) {
 
 const style = StyleSheet.create({
   container: {
-    width: 396,
+    width: "90%",
+    maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#222222",
-    borderRadius: 40,
+    borderRadius: 32,
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 10,
+    marginBottom: 8,
     
   },
   titulo: {
     color: "#FAE0C5",
-    fontSize: 20,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
   },
 });
