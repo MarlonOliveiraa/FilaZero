@@ -1,5 +1,4 @@
 import BotaoComponent from "@/components/ui/botao-component";
-import CardComponent from "@/components/ui/card-component";
 import InputComponentInputComponent from "@/components/ui/input-component";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -25,12 +24,7 @@ export default function RecuperarSenha() {
 
       <BotaoComponent titulo="Enviar código" />
 
-      <CardComponent
-        image={require("@/assets/icons/image-cassems.png")}
-        titulo={"Cassems - Centro"}
-        data={"Data: 22/07/2026"}
-        horario={"Horário: 15:00 "}
-      />
+      
     </View>
   );
 }
