@@ -24,7 +24,7 @@ export default function InputComponentInputComponent({
       <TextInput
         placeholder={placeholder}
         style={(styles.input, { fontFamily: "PoppinsRegular" })}
-        placeholderTextColor="#000000"
+        placeholderTextColor="#0000008b"
         {...rest}
       />
     </View>

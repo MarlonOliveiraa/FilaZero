@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Login() {
     return (
         <View style={styles.container}>
-            <View>
+            <View className="bg-blue-500">
                 <Text style={styles.text}>Entre com <br/>sua conta</Text>
                 <Text style={styles.subtitle}>Faça login para continuar.</Text>
             </View>
