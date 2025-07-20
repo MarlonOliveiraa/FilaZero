@@ -5,6 +5,7 @@ import {
   TextInputProps,
   View,
 } from "react-native";
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 type Props = {
   icon: any; 
@@ -18,13 +19,19 @@ export default function InputComponentInputComponent({
   className,
   ...rest
 }: Props) {
+  const text = useThemeColor({}, 'text');
+  const background = useThemeColor({}, 'background');
+  const primary = useThemeColor({}, 'primary');
+  const secondary = useThemeColor({}, 'secondary');
+  const accent = useThemeColor({}, 'accent');
+
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, { borderColor: text}]}>
       <Image source={icon} style={styles.icon} />
       <TextInput
         placeholder={placeholder}
-        style={(styles.input, { fontFamily: "PoppinsRegular" })}
-        placeholderTextColor="#000000"
+        style={[styles.input, { fontFamily: "PoppinsRegular", color: text }]}
+        placeholderTextColor="#0000008b"
         {...rest}
       />
     </View>
@@ -37,7 +44,6 @@ const styles = StyleSheet.create({
     maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#222222",
     borderWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -56,6 +62,5 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: "#000000",
   },
 });
