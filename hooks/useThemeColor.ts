@@ -5,7 +5,7 @@ export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
-  const theme = useColorScheme(); // Agora já está corretamente tipado como 'light' | 'dark'
+  const theme = useColorScheme();
   const colorFromProps = props[theme];
 
   return colorFromProps ?? Colors[theme][colorName];
