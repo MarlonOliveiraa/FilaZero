@@ -2,13 +2,20 @@ import BotaoComponent from "@/components/ui/botao-component";
 import InputComponentInputComponent from "@/components/ui/input-component";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function Login() {
+    const text = useThemeColor({}, 'text');
+    const background = useThemeColor({}, 'background');
+    const primary = useThemeColor({}, 'primary');
+    const secondary = useThemeColor({}, 'secondary');
+    const accent = useThemeColor({}, 'accent');
+
     return (
-        <View style={styles.container}>
-            <View className="bg-blue-500">
-                <Text style={styles.text}>Entre com <br/>sua conta</Text>
-                <Text style={styles.subtitle}>Faça login para continuar.</Text>
+        <View style={[styles.container, {backgroundColor: background }]}>
+            <View style={{alignItems: "flex-start", width: "90%"}}>
+                <Text style={[styles.text, {color: text}]}>Entre com <br/>sua conta</Text>
+                <Text style={[styles.subtitle, {color: text}]}>Faça login para continuar.</Text>
             </View>
 
             <InputComponentInputComponent
@@ -23,14 +30,14 @@ export default function Login() {
                 icon={require("@/assets/icons/senha.png")}
             />
             <View style={{ width: "90%", maxWidth: 300, alignItems: "flex-end", marginBottom: 32 }}>
-                <Text style={styles.senha}>Esqueci minha senha.</Text>
+                <Text style={[styles.senha, {color: text}]}>Esqueci minha senha.</Text>
             </View>
 
             <BotaoComponent
                 titulo="Entrar"
             />
 
-            <Text style={styles.cadastro}>Não tem uma conta? Cadastre-se</Text>
+            <Text style={[styles.cadastro, {color: text}]}>Não tem uma conta? Cadastre-se</Text>
         </View>
     );
 }
@@ -40,29 +47,25 @@ const styles = StyleSheet.create ({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: "#FAE0C5",
     },
     text: {
         fontSize: 48,
-        color: '#222222',
+        color: "text",
         fontFamily: 'PoppinsRegular',
         lineHeight: 60,
     },
     subtitle: {
         fontSize: 16,
-        color: '#222222',
         fontFamily: 'PoppinsRegular',
         marginBottom: 96,
     },
     senha: {
         fontSize: 12,
-        color: '#222222',
         fontFamily: 'PoppinsRegular',
         marginBottom: 32,
     },
     cadastro: {
         fontSize: 12,
-        color: '#222222',
         fontFamily: 'PoppinsRegular',
         marginTop: 8,
     },
