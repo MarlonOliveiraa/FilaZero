@@ -9,44 +9,72 @@ type props = {
 
 export default function CardComponent({ image, titulo, data, horario }: props) {
   return (
-    <View style={[style.container]}>
-      <Image source={image} style={[style.image]} />
-      <View style={[style.containerinfos]}>
-        <Text style={[style.titulo]}> {titulo} </Text>
-        <Text style={[style.titulo]}>{data}</Text>
-        <Text style={[style.titulo]}>{horario}</Text>
+    <View style={style.container}>
+      <View style={style.imageShadowWrapper}>
+        <Image source={image} style={style.image} />
       </View>
-      
+
+      <View style={style.containerinfos}>
+        <Text style={style.titulo}>{titulo}</Text>
+        <Text style={style.info}>{data}</Text>
+        <Text style={style.info}>{horario}</Text>
+      </View>
     </View>
   );
 }
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
-    width: "80%",
-    maxHeight: 100,
-    height: 4,
-    maxWidth: 396,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    width: "90%",
+    padding: 5,
+    maxHeight: 70,
+    height: 70,
+    maxWidth: 300,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     borderRadius: 5,
+    alignItems: "center",
   },
+
+  imageShadowWrapper: {
+    maxHeight:65,
+    // só sombra aqui, sem borda
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+  
+    borderRadius: 4, // mesmo raio da imagem para sombra arredondada
+    
+  },
+
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "#000",
+    backgroundColor: "#fff", 
+    resizeMode: "cover",
+    
+  },
+
   containerinfos: {
     flex: 1,
-    flexDirection: "column",
+    marginLeft: 10,
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
+
   titulo: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#000000",
+    marginBottom: 4,
   },
+
   info: {
-    fontSize: 12,
-    color: "#000000",
+    fontSize: 10,
+    color: "#020202",
   },
-  image: {
-    width: 100,
-    height: "auto",
-  }
 });
