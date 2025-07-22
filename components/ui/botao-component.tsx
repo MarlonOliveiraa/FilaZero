@@ -1,21 +1,35 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useNavigation } from "expo-router"; // ou @react-navigation/native se estiver usando React Navigation puro
+import React from "react";
 
 type props = {
   titulo: string;
   funcao?: () => void;
+  rota?: string;
 };
 
-export default function BotaoComponent({ titulo, funcao }: props) {
+export default function BotaoComponent({ titulo, funcao, rota }: props) {
   const text = useThemeColor({}, 'text');
-  const background = useThemeColor({}, 'background');
   const primary = useThemeColor({}, 'primary');
-  const secondary = useThemeColor({}, 'secondary');
-  const accent = useThemeColor({}, 'accent');
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    if (rota) {
+      // Vai para a rota se fornecida
+      navigation.navigate(rota as never);
+    }
+    if (funcao) {
+      funcao(); 
+    }
+  };
 
   return (
-    <TouchableOpacity style={[style.container, { backgroundColor: text  }]} onPress={funcao}>
-      <Text style={[style.titulo, {color: background}]}>{titulo}</Text>
+    <TouchableOpacity
+      style={[style.container, { backgroundColor: primary }]}
+      onPress={handlePress}
+    >
+      <Text style={[style.titulo, { color: text }]}>{titulo}</Text>
     </TouchableOpacity>
   );
 }
@@ -23,7 +37,7 @@ export default function BotaoComponent({ titulo, funcao }: props) {
 const style = StyleSheet.create({
   container: {
     width: "90%",
-    maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
+    maxWidth: 300,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

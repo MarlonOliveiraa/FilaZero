@@ -3,7 +3,8 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-export default function userType() {
+
+export default function ConfirmPassword() {
     const text = useThemeColor({}, 'text');
     const background = useThemeColor({}, 'background');
     const primary = useThemeColor({}, 'primary');

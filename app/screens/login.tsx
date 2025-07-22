@@ -1,16 +1,22 @@
 import BotaoComponent from "@/components/ui/botao-component";
-import InputComponentInputComponent from "@/components/ui/input-component";
+import InputComponent from "@/components/ui/input-component";
+import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/navigation';
 
-export default function Login() {
-    const text = useThemeColor({}, 'text');
-    const background = useThemeColor({}, 'background');
-    const primary = useThemeColor({}, 'primary');
-    const secondary = useThemeColor({}, 'secondary');
-    const accent = useThemeColor({}, 'accent');
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
+    export default function Login() {
+        const text = useThemeColor({}, 'text');
+        const background = useThemeColor({}, 'background');
+        // const primary = useThemeColor({}, 'primary');
+        // const secondary = useThemeColor({}, 'secondary');
+        // const accent = useThemeColor({}, 'accent');
+        // const navigation = useNavigation<NavigationProp>();
+        
     return (
         <View style={[styles.container, {backgroundColor: background }]}>
             <View style={{alignItems: "flex-start", width: "90%"}}>
@@ -18,13 +24,13 @@ export default function Login() {
                 <Text style={[styles.subtitle, {color: text}]}>Faça login para continuar.</Text>
             </View>
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="E-mail"
                 keyboardType="email-address"
                 icon={require("@/assets/icons/email.png")}
             />
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="Senha"
                 secureTextEntry={true}
                 icon={require("@/assets/icons/senha.png")}
