@@ -1,16 +1,16 @@
 import CardComponent from "@/components/ui/card-component";
 import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useThemeColor } from "@/hooks/useThemeColor";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const menuItems = [
-        { icon: require('@/assets/icons/home.png'), route: 'screens/home' }, 
-        { icon: require('@/assets/icons/search.png'), route: 'screens/search' }, 
-        { icon: require('@/assets/icons/fila.png'), route: 'screens/filas' }, 
-        { icon: require('@/assets/icons/profile.png'), route: 'screens/profile' }, 
-    ]
+  { icon: require("@/assets/icons/home.png"), route: "screens/home" },
+  { icon: require("@/assets/icons/fila.png"), route: "screens/filas" },
+  { icon: require("@/assets/icons/search.png"), route: "screens/search" },
+  { icon: require("@/assets/icons/profile.png"), route: "screens/profile" },
+];
 
 export default function Home() {
     const background = useThemeColor('background');
@@ -49,12 +49,9 @@ export default function Home() {
                 
             </ScrollView>
 
-            <Menucomponent 
-                items={menuItems}
-            />
-            
-        </View>
-    );
+      <Menucomponent items={menuItems} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create ({
