@@ -1,6 +1,6 @@
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { useRouter, usePathname } from "expo-router";
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { usePathname, useRouter } from "expo-router";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type MenuItem = {
   icon: any;
@@ -12,12 +12,12 @@ type MenuProps = {
 };
 
 export default function MenuComponent({ items }: MenuProps) {
-    const router = useRouter();
-    const pathname = usePathname();
-    const background = useThemeColor({}, 'background');
+  const router = useRouter();
+  const pathname = usePathname();
+  const background2 = useThemeColor('background2');
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: background2 }]}>
       {items.map((item, index) => {
         const isActive = pathname === item.route;
 
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     paddingVertical: 10,
-    backgroundColor: "#09160B",
     borderTopWidth: 1,
     borderTopColor: "#ccc",
     position: "absolute",
