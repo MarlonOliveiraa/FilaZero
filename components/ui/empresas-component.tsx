@@ -1,41 +1,42 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type props = {
-    image: any;
-}
+  image: any;
+  iconRedirect: any;
+};
 
-export default function EmpresaComponent({image}: props){
-    <View>
-        <TouchableOpacity>
-            <Image 
-                source={require("@/assets/icons/user.png")} 
-                style={style.icon}
-            />
-        </TouchableOpacity>
-        <Image
-            source={image}
-            style={style.image}
-        />
+export default function CardRedirectComponent   ({ image, iconRedirect }: props) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.imageWrapper}>
+        <Image source={image} style={styles.image} />
+        <Image source={iconRedirect} style={styles.icon} />
+      </TouchableOpacity>
     </View>
-   
+  );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    maxHeight: 120,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageWrapper: {
+    position: "relative",
+  },
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    position: "absolute",
+    top: 5,
+    right: 5,
+  },
+});
 
-const style = StyleSheet.create ({
-    container: {
-        maxHeight: 120,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    image:{
-        width: 120,
-        height: 120,
-    },
-    icon: {
-        width:20,
-        height:20,
-        justifyContent:"flex-end",
-        alignItems: "flex-end"
-    }
-})
