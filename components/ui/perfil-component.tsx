@@ -4,7 +4,7 @@ type props = {
   image: any;
 };
 
-export default function PerfilComponent({ image }: props) {
+export default function CircleComponent({ image }: props) {
   return (
     <View style={styles.shadowContainer}>
       <Image source={image} style={styles.image} resizeMode="cover" />
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 60,
     height: 60,
-    overflow: "hidden", 
+    overflow: "hidden",
   },
   image: {
     width: 60,
