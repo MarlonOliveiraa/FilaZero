@@ -1,13 +1,13 @@
 import { Image, StyleSheet, View } from "react-native";
 
-type PerfilComponent = {
+type props = {
   image: any;
 };
 
-export default function PerfilComponent({ image }: PerfilComponent) {
+export default function CircleComponent({ image }: props) {
   return (
     <View style={styles.shadowContainer}>
-      <Image style={styles.image} source={image} resizeMode="cover" />
+      <Image source={image} style={styles.image} resizeMode="cover" />
     </View>
   );
 }
@@ -22,17 +22,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
-    maxWidth: 150,
-    width: "100%",
-    maxHeight: 150,
-    height: "100%",
-    borderRadius: 5,
+    borderRadius: 50,
+    width: 60,
+    height: 60,
     overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "#000000",
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
   },
 });
