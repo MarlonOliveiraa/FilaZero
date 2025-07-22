@@ -18,63 +18,35 @@ export default function Home() {
     
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
-            <ScrollView style={{ width: "100%"}} contentContainerStyle={{ alignItems: "center", gap: 16 }}>
-            <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
+            <ScrollView style={{ width: "100%", maxWidth: 300}} contentContainerStyle={{ alignItems: "center", gap: 16 }}>
+                <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
 
-            <InputComponent
-                placeholder="Pesquise a empresa"
-                keyboardType="email-address"
-                icon={require("@/assets/icons/email.png")}
-            />
+                <InputComponent
+                    placeholder="Pesquise a empresa"
+                    keyboardType="email-address"
+                    icon={require("@/assets/icons/email.png")}
+                />
 
-            {/* AQUI VAI O MAPA */}
+                {/* AQUI VAI O MAPA */}
+                <View style={{width: "100%", height: 156, backgroundColor: "#3d3d3dff", borderRadius: 16}}/>
 
-            
+                <View style={{flex: 1, width: '90%', justifyContent: 'center', alignItems: 'flex-start'}}>
+                    <Text style={[styles.subtitle2, { color: text } ]}>Agendamentos</Text>
+                </View>
+                <CardComponent
+                    image={(require('@/assets/icons/CASSEMS-2.png'))}
+                    titulo="Bem-vindo ao Fila Zero"
+                    data="Hoje é 01/01/2024"
+                    horario="Horário: 10:00"
+                />
+                <CardComponent
+                    image={(require('@/assets/icons/CASSEMS-2.png'))}
+                    titulo="Bem-vindo ao Fila Zero"
+                    data="Hoje é 01/01/2024"
+                    horario="Horário: 10:00"
+                />
 
-            <View style={{width: "90%", height: 150, backgroundColor: "#3d3d3dff", borderRadius: 16}}></View>
-            <Text style={[styles.subtitle2, { color: text } ]}>Empresas em destaque</Text>
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
-                    <CardComponent
-                        image={(require('@/assets/icons/CASSEMS-2.png'))}
-                        titulo="Bem-vindo ao Fila Zero"
-                        data="Hoje é 01/01/2024"
-                        horario="Horário: 10:00"
-                    />
+                
             </ScrollView>
 
             <Menucomponent 
@@ -91,7 +63,7 @@ const styles = StyleSheet.create ({
         justifyContent: 'flex-start',
         alignItems: 'center',
         gap: 16,
-        marginTop: 32
+        paddingTop: 32
     },
     text: {
         fontSize: 48,
@@ -106,6 +78,6 @@ const styles = StyleSheet.create ({
     subtitle2: {
         fontSize: 16,
         fontFamily: 'PoppinsRegular',
-        
+        fontWeight: 'bold',
     },
 });

@@ -1,21 +1,32 @@
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useThemeColor } from '@/hooks/useThemeColor';
+
+// Lista de nomes válidos de cores do seu Colors.ts
+type ColorName =
+  | 'text'
+  | 'text2'
+  | 'background'
+  | 'background2'
+  | 'primary'
+  | 'secondary'
+  | 'accent';
 
 type props = {
   titulo: string;
   funcao?: () => void;
+  corFundo?: ColorName;
+  corTexto?: ColorName;
 };
 
-export default function BotaoComponent({ titulo, funcao }: props) {
-  const text = useThemeColor({}, 'text');
-  const background = useThemeColor({}, 'background');
-  const primary = useThemeColor({}, 'primary');
-  const secondary = useThemeColor({}, 'secondary');
-  const accent = useThemeColor({}, 'accent');
+export default function BotaoComponent({ titulo, funcao, corFundo="primary", corTexto= "secondary" }: props) {
+  const backgroundColor = useThemeColor(corFundo);
+  const textColor = useThemeColor(corTexto);
+
+  console.log(backgroundColor, textColor);
 
   return (
-    <TouchableOpacity style={[style.container, { backgroundColor: text  }]} onPress={funcao}>
-      <Text style={[style.titulo, {color: background}]}>{titulo}</Text>
+    <TouchableOpacity style={[style.container, { backgroundColor: backgroundColor }]} onPress={funcao}>
+      <Text style={[style.titulo, { color: textColor }]}>{titulo}</Text>
     </TouchableOpacity>
   );
 }
@@ -23,7 +34,7 @@ export default function BotaoComponent({ titulo, funcao }: props) {
 const style = StyleSheet.create({
   container: {
     width: "90%",
-    maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
+    maxWidth: 300,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
