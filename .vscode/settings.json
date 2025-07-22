@@ -3,5 +3,6 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "avdmanager.sdkPath": "c:\\Users\\evand\\OneDrive\\Documentos\\projetos\\FilaZero\\app\\screens\\recuperarSenha"
 }
