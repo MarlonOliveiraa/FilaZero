@@ -1,3 +1,4 @@
+import { useThemeColor } from "@/hooks/useThemeColor";
 import {
   Image,
   StyleSheet,
@@ -5,10 +6,9 @@ import {
   TextInputProps,
   View,
 } from "react-native";
-import { useThemeColor } from '@/hooks/useThemeColor';
 
 type Props = {
-  icon: any; 
+  icon: any;
   placeholder: string;
   className?: string;
 } & TextInputProps;
@@ -19,14 +19,14 @@ export default function InputComponentInputComponent({
   className,
   ...rest
 }: Props) {
-  const text = useThemeColor({}, 'text');
-  const background = useThemeColor({}, 'background');
-  const primary = useThemeColor({}, 'primary');
-  const secondary = useThemeColor({}, 'secondary');
-  const accent = useThemeColor({}, 'accent');
+  const text = useThemeColor({}, "text");
+  const background = useThemeColor({}, "background");
+  const primary = useThemeColor({}, "primary");
+  const secondary = useThemeColor({}, "secondary");
+  const accent = useThemeColor({}, "accent");
 
   return (
-    <View style={[styles.container, { borderColor: text}]}>
+    <View style={[styles.container, { borderColor: text }]}>
       <Image source={icon} style={styles.icon} />
       <TextInput
         placeholder={placeholder}
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     marginVertical: 6,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    gap: 20,
+    gap: 12,
   },
   icon: {
     width: 20,
@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 12,
   },
 });

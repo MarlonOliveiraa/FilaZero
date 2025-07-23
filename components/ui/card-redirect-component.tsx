@@ -1,15 +1,26 @@
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  GestureResponderEvent,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-type props = {
+type Props = {
   image: any;
   iconRedirect: any;
+  onPress?: (event: GestureResponderEvent) => void;
 };
 
-export default function CardRedirectComponent   ({ image, iconRedirect }: props) {
+export default function CardRedirectComponent({
+  image,
+  iconRedirect,
+  onPress,
+}: Props) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.imageWrapper}>
-        <Image source={image} style={styles.image} />
+      <TouchableOpacity style={styles.imageWrapper} onPress={onPress}>
+        <Image source={{ uri: image }} style={styles.image} />
         <Image source={iconRedirect} style={styles.icon} />
       </TouchableOpacity>
     </View>
@@ -39,4 +50,3 @@ const styles = StyleSheet.create({
     right: 5,
   },
 });
-
