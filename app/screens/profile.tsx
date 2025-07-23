@@ -11,13 +11,13 @@ const menuItems = [
         { icon: require('@/assets/icons/profile.png'), route: 'screens/profile' }, 
     ]
 
-export default function Search() {
+export default function Profile() {
     const background = useThemeColor('background');
     const text = useThemeColor('text');
     
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
-            <Text>Search</Text>
+            <Text>Profile</Text>
 
             <Menucomponent 
                 items={menuItems}

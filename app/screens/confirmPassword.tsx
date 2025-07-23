@@ -4,14 +4,14 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function userType() {
-    const text = useThemeColor({}, 'text');
-    const background = useThemeColor({}, 'background');
-    const primary = useThemeColor({}, 'primary');
+    const text = useThemeColor('text');
+    const background = useThemeColor('background');
+    const primary = useThemeColor('primary');
 
     return (
         <View style={[styles.container, { backgroundColor: background }]}>
             <View style={{ marginBottom: 32 }}>
-                <Image source={require("@/assets/icons/drawConfirmarSenha.png")}/>
+                <Image source={require("@/assets/images/drawConfirmarSenha.png")}/>
             </View>
             <Text style={[styles.text, { color: text }]}>Confirmação de senha</Text>
             <Text style={[styles.number, { color: primary }]}>A001</Text>
