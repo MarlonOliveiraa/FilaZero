@@ -1,15 +1,15 @@
 import BotaoComponent from "@/components/ui/botao-component";
-import InputComponentInputComponent from "@/components/ui/input-component";
+import InputComponent from "@/components/ui/input-component";
+import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function RecuperarSenha() {
-    const text = useThemeColor({}, 'text');
-    const background = useThemeColor({}, 'background');
-    const primary = useThemeColor({}, 'primary');
-    const secondary = useThemeColor({}, 'secondary');
-    const accent = useThemeColor({}, 'accent');
+    const text = useThemeColor('text');
+    const background = useThemeColor('background');
+    // const primary = useThemeColor('primary');
+    // const secondary = useThemeColor('secondary');
+    // const accent = useThemeColor('accent');
 
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
@@ -18,7 +18,7 @@ export default function RecuperarSenha() {
                 <Text style={[styles.subtitle, { color: text }]}>Digite seu e-mail para enviar o código.</Text>
             </View>
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="E-mail"
                 keyboardType="email-address"
                 icon={require("@/assets/icons/email.png")}

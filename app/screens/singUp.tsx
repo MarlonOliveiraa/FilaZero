@@ -1,8 +1,8 @@
 import BotaoComponent from "@/components/ui/botao-component";
-import InputComponentInputComponent from "@/components/ui/input-component";
+import InputComponent from "@/components/ui/input-component";
+import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function SingUp() {
     const text = useThemeColor({}, 'text');
@@ -18,29 +18,29 @@ export default function SingUp() {
                 <Text style={[styles.subtitle, { color: text }]}>Faça seu cadastro para continuar.</Text>
             </View>
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="Nome completo"
                 icon={require("@/assets/icons/user.png")}
             />
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="Telefone"
                 keyboardType="phone-pad"
                 icon={require("@/assets/icons/phone.png")}
             />
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="E-mail"
                 keyboardType="email-address"
                 icon={require("@/assets/icons/email.png")}
             />
 
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="Senha"
                 secureTextEntry={true}
                 icon={require("@/assets/icons/senha.png")}
             />
-            <InputComponentInputComponent
+            <InputComponent
                 placeholder="Confirme sua senha"
                 secureTextEntry={true}
                 icon={require("@/assets/icons/senha.png")}

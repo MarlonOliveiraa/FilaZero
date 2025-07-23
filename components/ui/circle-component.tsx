@@ -1,14 +1,15 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 type props = {
   image: any;
+  funcao?: () => void;
 };
 
-export default function CircleComponent({ image }: props) {
+export default function CircleComponent({ image, funcao }: props) {
   return (
-    <View style={styles.shadowContainer}>
+    <TouchableOpacity style={styles.shadowContainer} onPress={funcao}>
       <Image source={image} style={styles.image} resizeMode="cover" />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -23,13 +24,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 8,
     borderRadius: 50,
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     overflow: "hidden",
   },
   image: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 50,
   },
 });

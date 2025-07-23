@@ -27,14 +27,14 @@ const style = StyleSheet.create({
   container: {
     flexDirection: "row",
     width: "90%",
-    padding: 5,
-    maxHeight: 70,
-    height: 70,
-    maxWidth: 300,
+    maxWidth: 420,
+    padding: 10,
+    height: 90,
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     borderRadius: 5,
     alignItems: "center",
+    justifyContent: "center",
   },
 
   imageShadowWrapper: {
@@ -50,8 +50,8 @@ const style = StyleSheet.create({
   },
 
   image: {
-    width: 60,
-    height: 60,
+    width: 68,
+    height: 68,
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#000",
@@ -68,13 +68,13 @@ const style = StyleSheet.create({
   },
 
   titulo: {
-    fontSize: 14,
+    fontSize: 20,
     color: "#000000",
     marginBottom: 4,
   },
 
   info: {
-    fontSize: 10,
+    fontSize: 14,
     color: "#020202",
   },
 });

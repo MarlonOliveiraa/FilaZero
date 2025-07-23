@@ -13,17 +13,17 @@ type Props = {
   className?: string;
 } & TextInputProps;
 
-export default function InputComponentInputComponent({
+export default function InputComponent({
   icon,
   placeholder,
   className,
   ...rest
 }: Props) {
-  const text = useThemeColor({}, "text");
-  const background = useThemeColor({}, "background");
-  const primary = useThemeColor({}, "primary");
-  const secondary = useThemeColor({}, "secondary");
-  const accent = useThemeColor({}, "accent");
+  const text = useThemeColor('text');
+  // const background = useThemeColor('background');
+  // const primary = useThemeColor('primary');
+  // const secondary = useThemeColor('secondary');
+  // const accent = useThemeColor('accent');
 
   return (
     <View style={[styles.container, { borderColor: text }]}>
@@ -41,7 +41,7 @@ export default function InputComponentInputComponent({
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    maxWidth: 300, //Se quiser limitar a largura máxima e mudar a responsividade
+    maxWidth: 420, //Se quiser limitar a largura máxima e mudar a responsividade
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
