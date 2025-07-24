@@ -40,18 +40,17 @@ export default function InputComponent({
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
-    maxWidth: 420, //Se quiser limitar a largura máxima e mudar a responsividade
+    width: "100%",
+    maxWidth: 420,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    paddingLeft: 22,
     borderRadius: 40,
     marginVertical: 6,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    gap: 12,
+    gap: 8,
   },
   icon: {
     width: 20,

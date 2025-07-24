@@ -29,18 +29,29 @@ export default function CardRedirectComponent({
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: 120,
+    width: "100%",
+    maxWidth: 250,
+    height: "100%",
+    maxHeight: 250,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   imageWrapper: {
-    position: "relative",
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 8, // importante no Android
+    borderRadius: 10,
+    backgroundColor: "#fff",
+    overflow: "hidden",
   },
   image: {
-    width: 120,
-    height: 120,
+    width: 145,
+    height: 145,
     borderRadius: 10,
+    overflow: "hidden",
   },
   icon: {
     width: 20,

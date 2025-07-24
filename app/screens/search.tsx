@@ -2,6 +2,7 @@ import CardRedirectComponent from "@/components/ui/card-redirect-component";
 import InputComponent from "@/components/ui/input-component";
 import MenuComponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { push } from "expo-router/build/global-state/routing";
 import React from "react";
 import {
   FlatList,
@@ -32,43 +33,50 @@ const dados: Empresas[] = [
     id: 1,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    navigation: "DetalhesEmpresa",
+    navigation: "home",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 2,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 3,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 4,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 5,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 6,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {
     id: 7,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
+  {
+    id: 8,
+    image:
+      "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
+    iconRedirect: require("@/assets/icons/external-link.png"),
   },
 ];
 
@@ -82,7 +90,10 @@ export default function Filas({ navigation }: any) {
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
       >
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity
+          style={styles.botao}
+          onPress={() => push("../screens/home")}
+        >
           <Image source={require("@/assets/icons/arrowBack.png")} />
         </TouchableOpacity>
 
@@ -101,20 +112,17 @@ export default function Filas({ navigation }: any) {
             <CardRedirectComponent
               image={item.image}
               iconRedirect={item.iconRedirect}
-              onPress={() =>
-                navigation.navigate(item.navigation ?? "DefaultRoute", {
-                  id: item.id,
-                })
-              }
+              // onPress={() => push(`/screens/estabelecimento?id=${item.id}`)} CODIGO PRONTO PARA RECEBER O BACKEND
+              onPress={() => push(`/screens/home`)}
             />
           )}
+          numColumns={2}
+          columnWrapperStyle={styles.linha} // estilo para cada linha
+          contentContainerStyle={styles.containerCard}
         />
       </ScrollView>
 
-    
-      
-        <MenuComponent items={menuItems} />
-      
+      <MenuComponent items={menuItems} />
     </View>
   );
 }
@@ -125,8 +133,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   scrollContainer: {
-    paddingBottom: 80, // espaço para o menu
-    paddingHorizontal: 20,
+    paddingTop: 30,
+    paddingBottom: 80,
+    marginHorizontal: 12,
   },
   menuContainer: {
     position: "absolute",
@@ -137,10 +146,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontFamily: "PoppinsRegular",
-    lineHeight: 60,
+    marginBottom: 10,
+    marginTop: 14,
     fontWeight: "600",
   },
   botao: {
     marginBottom: "5%",
+  },
+  linha: {
+    gap: 8,
+  },
+  containerCard: {
+    gap: 6,
   },
 });
