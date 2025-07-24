@@ -1,5 +1,6 @@
 import CardRedirectComponent from "@/components/ui/card-redirect-component";
 import InputComponent from "@/components/ui/input-component";
+import MenuComponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import React from "react";
 import {
@@ -14,8 +15,8 @@ import {
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "screens/home" },
-  { icon: require("@/assets/icons/search.png"), route: "screens/search" },
   { icon: require("@/assets/icons/fila.png"), route: "screens/filas" },
+  { icon: require("@/assets/icons/search.png"), route: "screens/search" },
   { icon: require("@/assets/icons/profile.png"), route: "screens/profile" },
 ];
 
@@ -31,7 +32,6 @@ const dados: Empresas[] = [
     id: 1,
     image:
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
-    iconRedirect: "google.com",
     navigation: "DetalhesEmpresa",
   },
   {
@@ -72,68 +72,73 @@ const dados: Empresas[] = [
   },
 ];
 
-export function Filas({ navigation }: Empresas) {
+export default function Filas({ navigation }: any) {
   const background = useThemeColor("background");
   const text = useThemeColor("text");
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.scrollContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.container}>
+    <View style={styles.screen}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <TouchableOpacity style={styles.botao}>
           <Image source={require("@/assets/icons/arrowBack.png")} />
         </TouchableOpacity>
+
         <InputComponent
           placeholder="Pesquise por localização ou serviço"
           keyboardType="email-address"
           icon={require("@/assets/icons/search-dark.png")}
         />
+
         <Text style={styles.text}>Empresas parceiras</Text>
-        <View>
-          <FlatList
-            data={dados}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <CardRedirectComponent
-                image={item.image}
-                iconRedirect={item.iconRedirect}
-                onPress={() =>
-                  navigation.navigate(item.navigation ?? "DefaultRoute", {
-                    id: item.id,
-                  })
-                }
-              />
-            )}
-          />
-        </View>
-      </View>
-    </ScrollView>
+
+        <FlatList
+          data={dados}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <CardRedirectComponent
+              image={item.image}
+              iconRedirect={item.iconRedirect}
+              onPress={() =>
+                navigation.navigate(item.navigation ?? "DefaultRoute", {
+                  id: item.id,
+                })
+              }
+            />
+          )}
+        />
+      </ScrollView>
+
+    
+      
+        <MenuComponent items={menuItems} />
+      
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flexGrow: 1,
-    paddingBottom: 20,
+  screen: {
+    flex: 1,
+    backgroundColor: "#fff",
   },
-  container: {
-    width: "100%",
-    maxWidth: 320,
-    marginTop: "10%",
-    marginLeft: "5%",
+  scrollContainer: {
+    paddingBottom: 80, // espaço para o menu
+    paddingHorizontal: 20,
+  },
+  menuContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   text: {
     fontSize: 20,
     fontFamily: "PoppinsRegular",
     lineHeight: 60,
     fontWeight: "600",
-  },
-  subtitle: {
-    fontSize: 12,
-    fontFamily: "PoppinsRegular",
-    marginBottom: 72,
   },
   botao: {
     marginBottom: "5%",
