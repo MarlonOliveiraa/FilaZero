@@ -5,7 +5,7 @@ type props = {
   iconRedirect: any;
 };
 
-export default function CardRedirectComponent   ({ image, iconRedirect }: props) {
+export default function CardRedirectComponent ({ image, iconRedirect }: props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.imageWrapper}>
