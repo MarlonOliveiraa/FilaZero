@@ -1,11 +1,11 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-type props = {
+export interface ProfileCircle {
   image: any;
   funcao?: () => void;
-};
+}
 
-export default function CircleComponent({ image, funcao }: props) {
+export default function CircleComponent({ image, funcao }: ProfileCircle) {
   return (
     <TouchableOpacity style={styles.shadowContainer} onPress={funcao}>
       <Image source={image} style={styles.image} resizeMode="cover" />

@@ -1,13 +1,19 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-type props = {
-  image: any;
-  titulo: string;
-  data: string;
-  horario: string;
-};
+export interface Card {
+  image: ImageSourcePropType;
+  title: string;
+  date: string;
+  time: string;
+}
 
-export default function CardComponent({ image, titulo, data, horario }: props) {
+export default function CardComponent({ image, title, date, time }: Card) {
   return (
     <View style={style.container}>
       <View style={style.imageShadowWrapper}>
@@ -15,9 +21,9 @@ export default function CardComponent({ image, titulo, data, horario }: props) {
       </View>
 
       <View style={style.containerinfos}>
-        <Text style={style.titulo}>{titulo}</Text>
-        <Text style={style.info}>{data}</Text>
-        <Text style={style.info}>{horario}</Text>
+        <Text style={style.titulo}>{title}</Text>
+        <Text style={style.info}>{date}</Text>
+        <Text style={style.info}>{time}</Text>
       </View>
     </View>
   );
@@ -38,15 +44,14 @@ const style = StyleSheet.create({
   },
 
   imageShadowWrapper: {
-    maxHeight:65,
+    maxHeight: 65,
     // só sombra aqui, sem borda
     shadowColor: "#000",
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
-  
+
     borderRadius: 4, // mesmo raio da imagem para sombra arredondada
-    
   },
 
   image: {
@@ -55,9 +60,8 @@ const style = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#000",
-    backgroundColor: "#fff", 
+    backgroundColor: "#fff",
     resizeMode: "cover",
-    
   },
 
   containerinfos: {
