@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useThemeColor } from "@/hooks/useThemeColor";
 import {
   Image,
   StyleSheet,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 type Props = {
-  icon: any; 
+  icon: any;
   placeholder: string;
   className?: string;
 } & TextInputProps;
@@ -26,7 +26,7 @@ export default function InputComponent({
   // const accent = useThemeColor('accent');
 
   return (
-    <View style={[styles.container, { borderColor: text}]}>
+    <View style={[styles.container, { borderColor: text }]}>
       <Image source={icon} style={styles.icon} />
       <TextInput
         placeholder={placeholder}
@@ -40,18 +40,17 @@ export default function InputComponent({
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
-    maxWidth: 420, //Se quiser limitar a largura máxima e mudar a responsividade
+    width: "100%",
+    maxWidth: 420,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    paddingLeft: 22,
     borderRadius: 40,
     marginVertical: 6,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    gap: 20,
+    gap: 8,
   },
   icon: {
     width: 20,
@@ -61,6 +60,6 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 12,
   },
 });

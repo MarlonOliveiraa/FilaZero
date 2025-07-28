@@ -4,11 +4,11 @@ import { StyleSheet, Text, View } from "react-native";
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function userType() {
-    const text = useThemeColor({}, 'text');
-    const background = useThemeColor({}, 'background');
-    const primary = useThemeColor({}, 'primary');
-    const secondary = useThemeColor({}, 'secondary');
-    const accent = useThemeColor({}, 'accent');
+    const text = useThemeColor('text');
+    const background = useThemeColor('background');
+    const primary = useThemeColor('primary');
+    const secondary = useThemeColor('secondary');
+    const accent = useThemeColor('accent');
 
     return (
         <View style={[styles.container, { backgroundColor: background }]}>
