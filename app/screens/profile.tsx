@@ -2,7 +2,7 @@ import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 
 const menuItems = [
         { icon: require('@/assets/icons/home.png'), route: 'screens/home' }, 
@@ -10,14 +10,17 @@ const menuItems = [
         { icon: require('@/assets/icons/search.png'), route: 'screens/search' }, 
         { icon: require('@/assets/icons/profile.png'), route: 'screens/profile' }, 
     ]
-
-export default function Profile() {
-    const background = useThemeColor('background');
-    const text = useThemeColor('text');
+    
+    export default function Profile() {
+        const background = useThemeColor('background');
+        const text = useThemeColor('text');
     
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
-            <Text>Profile</Text>
+            <StatusBar/>
+            <View>
+                
+            </View>
 
             <Menucomponent 
                 items={menuItems}

@@ -34,7 +34,7 @@ export default function BotaoComponent({ titulo, funcao, corFundo="primary", cor
 const style = StyleSheet.create({
   container: {
     width: "90%",
-    maxWidth: 300,
+    maxWidth: 420,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
