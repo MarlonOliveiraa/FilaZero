@@ -53,13 +53,42 @@ type props = {
             </View>
 
             <View style={{width: "90%", justifyContent: "center", alignItems: "flex-start", gap: 16}}>
-                <View style={{flex: 1, flexDirection: "row" ,width: "100%", gap: 16}}>
+                {/* Telefone */}
+                <View style={{flex: 1, flexDirection: "row" ,width: "100%", gap: 12, alignItems: 'center'}}>
                     <Image source={require('@/assets/icons/phone.png')} />
-                    <Text>(67) 99100-9862</Text>
+                    <Text style={{fontWeight: 'bold'}}>(67) 99100-9862</Text>
                 </View>
-                <View style={{flex: 1, flexDirection: "row" ,width: "100%", gap: 16}}>
+                {/* Horario de funcionamento */}
+                <View style={{flex: 1, flexDirection: "row" ,width: "100%", gap: 12, alignItems: 'center'}}>
                     <Image source={require('@/assets/icons/time.png')} />
-                    <Text>Fechado</Text>
+                    <Text style={{fontWeight: 'bold', color: '#ff0000'}}>Fechado</Text>
+                    <View style={{borderRadius: 100, width: 8, height: 8, borderColor: '#1d1d1dff', borderWidth: 3 }}/>
+                    <Text style={{fontWeight: '600', color: '#21212198'}}>Abre ás 8 horas</Text>
+                    <Image source={require('@/assets/icons/arrow-down-fill.png')}/>
+                </View>
+                {/* Redes sociais */}
+                <View style={{ flexDirection: "row", gap: 16 }}>
+                    <TouchableOpacity
+                        style={{ cursor: 'pointer' }}
+                        onPress={() => {
+                            push("https://wa.me/5567991009862");
+                        }}>
+                        <Image source={require('@/assets/icons/whatsapp-icon.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ cursor: 'pointer' }}
+                        onPress={() => {
+                            push("https://instagram.com/evandroocm");
+                        }}>
+                        <Image source={require('@/assets/icons/instagram-icon.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ cursor: 'pointer' }}
+                        onPress={() => {
+                            push("https://facebook.com/evandromktd");
+                                }}>
+                        <Image source={require('@/assets/icons/facebook-icon.png')} />
+                    </TouchableOpacity>
                 </View>
             </View>
             

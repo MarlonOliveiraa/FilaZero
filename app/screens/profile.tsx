@@ -2,7 +2,7 @@ import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const menuItems = [
         { icon: require('@/assets/icons/home.png'), route: 'screens/home' }, 
@@ -17,9 +17,13 @@ const menuItems = [
     
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
-            <StatusBar/>
             <View>
-                
+                {/* Foto perfil */}
+                <View>
+                    <Image 
+                        style={{width: 120, height: 120}}
+                        source={require('@/assets/icons/avatar-user.png')}/>
+                </View>
             </View>
 
             <Menucomponent 
@@ -32,7 +36,7 @@ const menuItems = [
 const styles = StyleSheet.create ({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         gap: 16,
     },
