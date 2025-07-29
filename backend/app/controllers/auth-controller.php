@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); 
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
 require_once __DIR__ . '/../models/usuario-model.php';
 
@@ -20,10 +20,10 @@ class AuthController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $nome  = $data['nome'] ?? '';
+        $nome     = $data['nome'] ?? '';
         $telefone = $data['telefone'] ?? '';
-        $email = $data['email'] ?? '';
-        $senha = $data['senha'] ?? '';
+        $email    = $data['email'] ?? '';
+        $senha    = $data['senha'] ?? '';
 
         if (!$nome || !$email || !$senha) {
             return $this->jsonResponse(['success' => false, 'message' => 'Nome, email e senha são obrigatórios'], 400);
@@ -36,6 +36,30 @@ class AuthController
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
         Usuario::Create($nome, $telefone, $email, $senhaHash);
 
-        return $this->jsonResponse(['success' => true, 'message' => 'Usuário cadastrado com sucesso']);
+        return $this->jsonResponse(['success' => true, 'message' => 'Usuário cadastrado com sucesso'], 201);
+    }
+
+    public function login()
+    {
+        $data  = json_decode(file_get_contents('php://input'), true);
+        $email = $data['email'] ?? '';
+        $senha = $data['senha'] ?? '';
+
+        $user = Usuario::searchByEmail($email);
+        if (!$user) {
+            return $this->jsonResponse(['success' => false, 'message' => 'Usuário não encontrado'], 404);
+        }
+
+        if (!password_verify($senha, $user['senha'])) {
+            return $this->jsonResponse(['success' => false, 'message' => 'Senha inválida'], 401);
+            echo "deu ruim";
+        }
+
+        unset($user['senha']); // remove senha do retorno
+        return $this->jsonResponse([
+            'success' => true,
+            'message' => 'Login feito com sucesso',
+            'user'    => $user
+        ]);
     }
 }
