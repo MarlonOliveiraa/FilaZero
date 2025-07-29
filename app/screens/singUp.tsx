@@ -1,11 +1,10 @@
 import BotaoComponent from "@/components/ui/botao-component";
 import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { push } from "expo-router/build/global-state/routing";
 import React, { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { handleRegister } from "../services/auth-service";
 
-const API_URL = "http://seu-ip-ou-localhost:8000";
 
 export default function SignUp() {
   const text = useThemeColor("text");
@@ -20,34 +19,6 @@ export default function SignUp() {
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
 
-  async function handleRegister() {
-    if (!nome || !telefone || !email || !senha || !confirmaSenha) {
-      Alert.alert("Erro", "Preencha todos os campos");
-      return;
-    }
-    if (senha !== confirmaSenha) {
-      Alert.alert("Erro", "As senhas não coincidem");
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_URL}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, telefone, email, senha }),
-      });
-      const data = await response.json();
-
-      if (data.success) {
-        Alert.alert("Sucesso", "Cadastro realizado!");
-        push("/screens/login");
-      } else {
-        Alert.alert("Erro", data.message || "Erro no cadastro");
-      }
-    } catch (error) {
-      Alert.alert("Erro", "Não foi possível conectar ao servidor");
-    }
-  }
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
@@ -92,7 +63,8 @@ export default function SignUp() {
         icon={require("@/assets/icons/senha.png")}
       />
 
-      <BotaoComponent titulo="Cadastrar" />
+      <BotaoComponent titulo="Cadastrar" funcao={() => handleRegister(nome, telefone, email, senha, confirmaSenha)} />
+
 
       <Text style={[styles.entrar, { color: text }]}>
         Já tem uma conta? Entrar
