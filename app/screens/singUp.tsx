@@ -1,6 +1,7 @@
 import BotaoComponent from "@/components/ui/botao-component";
 import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { push } from "expo-router/build/global-state/routing";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -13,12 +14,11 @@ export default function SignUp() {
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
-      <View style={{ alignItems: "flex-start", width: "90%" }}>
+      <View style={{ alignItems: "flex-start", width: "90%"}}>
         <Text style={[styles.text, { color: text }]}>Registre-se</Text>
         <Text style={[styles.subtitle, { color: text }]}>
           Faça seu cadastro para continuar.
         </Text>
-      </View>
 
       <InputComponent
         placeholder="Nome completo"
@@ -47,13 +47,19 @@ export default function SignUp() {
         placeholder="Confirme sua senha"
         secureTextEntry
         icon={require("@/assets/icons/senha.png")}
-      />
+        />
 
-      <BotaoComponent titulo="Cadastrar" />
+      <BotaoComponent titulo="Cadastrar" 
+        corFundo="background2"
+        corTexto="text2"
+        funcao={() => push('/screens/login')}
+      />
+      </View>
 
       <Text style={[styles.entrar, { color: text }]}>
         Já tem uma conta? Entrar
       </Text>
+      
     </View>
   );
 }

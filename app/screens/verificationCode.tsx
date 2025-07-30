@@ -8,11 +8,11 @@ type Props = {
 }
 
 export default function CodigoVerificacao() {
-    const text = useThemeColor({}, 'text');
-    const background = useThemeColor({}, 'background');
-    const primary = useThemeColor({}, 'primary');
-    const secondary = useThemeColor({}, 'secondary');
-    const accent = useThemeColor({}, 'accent');
+    const text = useThemeColor('text');
+    const background = useThemeColor('background');
+    // const primary = useThemeColor('primary');
+    // const secondary = useThemeColor('secondary');
+    // const accent = useThemeColor('accent');
     
     return (
         <View style={[styles.container, { backgroundColor: background}]}>
@@ -78,9 +78,14 @@ export default function CodigoVerificacao() {
                 </View>
             </View>
 
-            <BotaoComponent
-                titulo="Enviar código"
-            />
+            <View style={{width: '90%'}}>
+                <BotaoComponent
+                    titulo="Enviar código"
+                    corFundo="background2"
+                    corTexto="text2"
+                    funcao={() => alert('Senha alterada com sucesso!')}
+                />
+            </View>
         </View>
     );
 }

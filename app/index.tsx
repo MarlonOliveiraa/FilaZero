@@ -12,12 +12,14 @@ export default function Index() {
         <View style={[styles.container, { backgroundColor: background }]}>
             <Text style={[styles.text, { color: text }]}>Tempo Zero</Text>
 
-            <BotaoComponent
-                titulo="Iniciar"
-                corFundo="background2"
-                corTexto="text2"
-                funcao={() => push('/screens/home')}
-            />
+            <View style={{width: '90%'}}>
+                <BotaoComponent
+                    titulo="Iniciar"
+                    corFundo="background2"
+                    corTexto="text2"
+                    funcao={() => push('/screens/home')}
+                />
+            </View>
         </View>
     );
 }

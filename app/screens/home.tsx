@@ -63,12 +63,14 @@ export default function Home() {
         contentContainerStyle={{ alignItems: "center", gap: 16 }}
       >
         <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
-
-        <InputComponent
-          placeholder="Pesquise a empresa"
-          keyboardType="email-address"
-          icon={require("@/assets/icons/email.png")}
-        />
+        
+        <View style={{width: '90%'}}>
+          <InputComponent
+            placeholder="Pesquise a empresa"
+            keyboardType="email-address"
+            icon={require("@/assets/icons/email.png")}
+            />
+        </View>
 
         {/* AQUI VAI O MAPA */}
         <View

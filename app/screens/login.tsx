@@ -1,6 +1,7 @@
 import BotaoComponent from "@/components/ui/botao-component";
 import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { push } from "expo-router/build/global-state/routing";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -16,7 +17,6 @@ export default function Login() {
             <View style={{alignItems: "flex-start", width: "90%"}}>
                 <Text style={[styles.text, {color: text}]}>Entre com <br/>sua conta</Text>
                 <Text style={[styles.subtitle, {color: text}]}>Faça login para continuar.</Text>
-            </View>
 
             <InputComponent
                 placeholder="E-mail"
@@ -35,8 +35,12 @@ export default function Login() {
 
             <BotaoComponent
                 titulo="Entrar"
+                corFundo="background2"
+                corTexto="text2"
+                funcao={() => push('/screens/home')}
             />
 
+            </View>
             <Text style={[styles.cadastro, {color: text}]}>Não tem uma conta? Cadastre-se</Text>
         </View>
     );

@@ -32,6 +32,7 @@ export default function InputComponent({
         placeholder={placeholder}
         style={[styles.input, { fontFamily: "PoppinsRegular", color: text }]}
         placeholderTextColor="#0000008b"
+        keyboardType="default"
         {...rest}
       />
     </View>
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 40,
     marginVertical: 6,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
     gap: 8,
   },
   icon: {
