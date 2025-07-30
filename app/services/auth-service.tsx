@@ -1,9 +1,7 @@
 import { push } from "expo-router/build/global-state/routing";
 import { Alert } from "react-native";
 
-//URL BASE: "/FilaZero/backend/public/index.php";
-
-// APONTANDO PARA API LOCALHOST
+// URL BASE: ajuste para seu IP na rede local se for testar no celular
 const API_URL = "http://localhost/FilaZero/backend/public/index.php";
 
 interface LoginResponse {
@@ -64,20 +62,17 @@ export async function Login(
     });
 
     const data: LoginResponse = await response.json();
-    console.log(data);
 
     if (data.success) {
-      Alert.alert("login feito com sucesso");
+      Alert.alert("Login feito com sucesso");
       push("/screens/home");
-      return {
-        success: true,
-        message: "deu ruim",
-      };
+    } else {
+      Alert.alert("Erro", data.message || "Falha no login");
     }
 
     return data;
-
   } catch (error) {
+    Alert.alert("Erro", "Não foi possível conectar ao servidor");
     return {
       success: false,
       message: "Erro ao conectar com servidor",

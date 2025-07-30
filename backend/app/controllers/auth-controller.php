@@ -1,8 +1,13 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    http_response_code(200);
+    exit();
+}
+
 
 require_once __DIR__ . '/../models/usuario-model.php';
 
@@ -44,22 +49,39 @@ class AuthController
         $data  = json_decode(file_get_contents('php://input'), true);
         $email = $data['email'] ?? '';
         $senha = $data['senha'] ?? '';
-
+    
+        $debug = [
+            'email_recebido' => $email,
+            'senha_recebida' => $senha,
+        ];
+    
         $user = Usuario::searchByEmail($email);
         if (!$user) {
-            return $this->jsonResponse(['success' => false, 'message' => 'Usuário não encontrado'], 404);
+            $debug['status'] = 'usuário não encontrado';
+            return $this->jsonResponse(['success' => false, 'debug' => $debug, 'message' => 'Usuário não encontrado'], 404);
         }
-
-        if (!password_verify($senha, $user['senha'])) {
-            return $this->jsonResponse(['success' => false, 'message' => 'Senha inválida'], 401);
-            echo "deu ruim";
+    
+        $debug['hash_no_banco'] = $user['senha_hash'];
+    
+        if (!password_verify($senha, $user['senha_hash'])) {
+            if ($senha !== $user['senha_hash']) {
+                $debug['status'] = 'senha inválida';
+                return $this->jsonResponse(['success' => false, 'debug' => $debug, 'message' => 'Senha inválida'], 401);
+            }
         }
-
-        unset($user['senha']); // remove senha do retorno
+    
+        if (is_array($user) && isset($user['senha_hash'])) {
+            unset($user['senha_hash']);
+        }
+    
+        $debug['status'] = 'login OK';
         return $this->jsonResponse([
             'success' => true,
             'message' => 'Login feito com sucesso',
-            'user'    => $user
+            'user'    => $user,
+            'debug'   => $debug
         ]);
     }
+    
+
 }
