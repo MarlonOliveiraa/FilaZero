@@ -1,6 +1,7 @@
 import BotaoComponent from "@/components/ui/botao-component";
 import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { push } from "expo-router/build/global-state/routing";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Login } from "../services/auth-service";
@@ -26,14 +27,12 @@ export default function ScreenLogin() {
           Faça login para continuar.
         </Text>
       </View>
-
       <InputComponent
         placeholder="E-mail"
         keyboardType="email-address"
         icon={require("@/assets/icons/email.png")}
         onChangeText={setEmail}
       />
-
       <InputComponent
         placeholder="Senha"
         secureTextEntry={true}
@@ -52,12 +51,15 @@ export default function ScreenLogin() {
           Esqueci minha senha.
         </Text>
       </View>
-
-      <BotaoComponent titulo="Entrar" funcao={() => Login(email, senha)} />
-
-      <Text style={[styles.cadastro, { color: text }]}>
+      <BotaoComponent titulo="Entrar" funcao={() => Login(email, senha)} />,
+      {/* <Text style={[styles.cadastro, { color: text }]}>
         Não tem uma conta? Cadastre-se
-      </Text>
+      </Text> */}
+      {/* botao para testar fluxo */}
+      <BotaoComponent
+        titulo="Não tem uma conta? Cadastre-se"
+        funcao={() => push("/screens/singUp")}
+      />
     </View>
   );
 }

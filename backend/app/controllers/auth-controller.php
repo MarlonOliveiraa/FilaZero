@@ -49,39 +49,59 @@ class AuthController
         $data  = json_decode(file_get_contents('php://input'), true);
         $email = $data['email'] ?? '';
         $senha = $data['senha'] ?? '';
-    
-        $debug = [
-            'email_recebido' => $email,
-            'senha_recebida' => $senha,
-        ];
-    
+
         $user = Usuario::searchByEmail($email);
         if (!$user) {
-            $debug['status'] = 'usuário não encontrado';
-            return $this->jsonResponse(['success' => false, 'debug' => $debug, 'message' => 'Usuário não encontrado'], 404);
+            return $this->jsonResponse(['success' => false, 'message' => 'Usuário não encontrado'], 404);
         }
-    
-        $debug['hash_no_banco'] = $user['senha_hash'];
-    
+
         if (!password_verify($senha, $user['senha_hash'])) {
             if ($senha !== $user['senha_hash']) {
-                $debug['status'] = 'senha inválida';
-                return $this->jsonResponse(['success' => false, 'debug' => $debug, 'message' => 'Senha inválida'], 401);
+                return $this->jsonResponse(['success' => false, 'message' => 'Senha inválida'], 401);
             }
         }
-    
+
         if (is_array($user) && isset($user['senha_hash'])) {
             unset($user['senha_hash']);
         }
-    
-        $debug['status'] = 'login OK';
+
+        $token = bin2hex(random_bytes(16));
+        Usuario::atualizarToken($user['id'], $token);
+
         return $this->jsonResponse([
             'success' => true,
             'message' => 'Login feito com sucesso',
             'user'    => $user,
-            'debug'   => $debug
+            'token' => $token,
         ]);
     }
-    
 
+    public function userAuthentication()
+    {
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            $authorizationHeader = $headers['Authorization'];
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+
+            $usuario = Usuario::searchByToken($token);
+
+            if ($usuario) {
+                return $this->jsonResponse([
+                    'success' => true,
+                    'message' => 'Autenticado com sucesso',
+                    'token'   => $token
+                ], 200);
+            } else {
+                return $this->jsonResponse([
+                    'success' => false,
+                    'message' => 'Token inválido'
+                ], 401);
+            }
+        } else {
+            return $this->jsonResponse([
+                'success' => false,
+                'message' => 'Token não encontrado nos headers'
+            ], 401);
+        }
+    }
 }

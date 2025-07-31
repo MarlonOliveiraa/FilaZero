@@ -1,7 +1,8 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { push } from "expo-router/build/global-state/routing";
 import { Alert } from "react-native";
 
-// URL BASE: ajuste para seu IP na rede local se for testar no celular
+// URL BASE:
 const API_URL = "http://localhost/FilaZero/backend/public/index.php";
 
 interface LoginResponse {
@@ -52,7 +53,8 @@ export async function handleRegister(
 
 export async function Login(
   email: string,
-  senha: string
+  senha: string,
+  token: string
 ): Promise<LoginResponse> {
   try {
     const response = await fetch(`${API_URL}/login`, {
@@ -65,6 +67,17 @@ export async function Login(
 
     if (data.success) {
       Alert.alert("Login feito com sucesso");
+      const saveToken = async () => {
+        try {
+          await AsyncStorage.setItem("@token", token);
+        } catch (error) {
+          console.log("nenhum token encontrado");
+        }
+
+        const tokenRecebido = await AsyncStorage.getItem("@token");
+        console.log(tokenRecebido);
+      };
+
       push("/screens/home");
     } else {
       Alert.alert("Erro", data.message || "Falha no login");
