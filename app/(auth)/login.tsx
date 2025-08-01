@@ -51,7 +51,7 @@ export default function ScreenLogin() {
           Esqueci minha senha.
         </Text>
       </View>
-      <BotaoComponent titulo="Entrar" funcao={() => Login(email, senha)} />,
+      <BotaoComponent titulo="Entrar" funcao={() => Login(email, senha)} />
       {/* <Text style={[styles.cadastro, { color: text }]}>
         Não tem uma conta? Cadastre-se
       </Text> */}

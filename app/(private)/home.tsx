@@ -5,9 +5,10 @@ import CircleComponent, {
 import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { ActivityIndicator, GestureResponderEvent, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "screens/home" },
@@ -50,6 +51,41 @@ export default function Home() {
   const background = useThemeColor("background");
   const text = useThemeColor("text");
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = await AsyncStorage.getItem("@token");
+      if (!token) {
+        // Se não tiver token, manda para login
+        router.push("/screens/login");
+        console.log("nao existe token");
+      } else {
+        // Token existe, permite acessar
+        setLoading(false);
+      }
+    };
+
+    const handleLogout = async () => {
+      await AsyncStorage.removeItem("@token");
+      console.log("Token removido");
+    };
+
+    checkAuth();
+  }, []);
+
+  if (loading) {
+    // Mostra loading enquanto verifica o token
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  function handleLogout(event: GestureResponderEvent): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
@@ -63,6 +99,10 @@ export default function Home() {
         contentContainerStyle={{ alignItems: "center", gap: 16 }}
       >
         <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
+        
+        <TouchableOpacity onPress={handleLogout}>
+          <Text>sair</Text>
+        </TouchableOpacity>
 
         <InputComponent
           placeholder="Pesquise a empresa"
@@ -165,6 +205,9 @@ export default function Home() {
     </View>
   );
 }
+
+
+ 
 
 const styles = StyleSheet.create({
   container: {

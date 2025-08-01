@@ -54,7 +54,6 @@ export async function handleRegister(
 export async function Login(
   email: string,
   senha: string,
-  token: string
 ): Promise<LoginResponse> {
   try {
     const response = await fetch(`${API_URL}/login`, {
@@ -65,20 +64,18 @@ export async function Login(
 
     const data: LoginResponse = await response.json();
 
-    if (data.success) {
+    if (data.success && data.token) {
       Alert.alert("Login feito com sucesso");
-      const saveToken = async () => {
+      
         try {
-          await AsyncStorage.setItem("@token", token);
+          await AsyncStorage.setItem("@token", data.token);
+          const tokenRecebido = await AsyncStorage.getItem("@token");
+          console.log("Token salvo:", tokenRecebido);
         } catch (error) {
-          console.log("nenhum token encontrado");
+          console.log("erro ao salvar token", error);
         }
 
-        const tokenRecebido = await AsyncStorage.getItem("@token");
-        console.log(tokenRecebido);
-      };
-
-      push("/screens/home");
+        push("/screens/home");
     } else {
       Alert.alert("Erro", data.message || "Falha no login");
     }
