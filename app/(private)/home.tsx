@@ -1,20 +1,18 @@
 import CardComponent, { Card } from "@/components/ui/card-component";
-import CircleComponent, {
-  ProfileCircle,
-} from "@/components/ui/circle-component";
+import CircleComponent, { ProfileCircle } from "@/components/ui/circle-component";
 import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import React, { useEffect } from "react";
-import { ActivityIndicator, GestureResponderEvent, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const menuItems = [
-  { icon: require("@/assets/icons/home.png"), route: "screens/home" },
-  { icon: require("@/assets/icons/fila.png"), route: "screens/filas" },
-  { icon: require("@/assets/icons/search.png"), route: "screens/search" },
-  { icon: require("@/assets/icons/profile.png"), route: "screens/profile" },
+  { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
+  { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
+  { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
+  { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
 ];
 
 const cards: Card[] = [
@@ -33,59 +31,22 @@ const cards: Card[] = [
 ];
 
 const profileCircle: ProfileCircle[] = [
-  {
-    image: require("@/assets/images/logo1.png"),
-  },
-  {
-    image: require("@/assets/images/logo1.png"),
-  },
-  {
-    image: require("@/assets/images/logo1.png"),
-  },
-  {
-    image: require("@/assets/images/logo1.png"),
-  },
+  { image: require("@/assets/images/logo1.png") },
+  { image: require("@/assets/images/logo1.png") },
+  { image: require("@/assets/images/logo1.png") },
+  { image: require("@/assets/images/logo1.png") },
 ];
 
 export default function Home() {
   const background = useThemeColor("background");
   const text = useThemeColor("text");
   const router = useRouter();
-  const [loading, setLoading] = React.useState(false);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const token = await AsyncStorage.getItem("@token");
-      if (!token) {
-        // Se não tiver token, manda para login
-        router.push("/screens/login");
-        console.log("nao existe token");
-      } else {
-        // Token existe, permite acessar
-        setLoading(false);
-      }
-    };
-
-    const handleLogout = async () => {
-      await AsyncStorage.removeItem("@token");
-      console.log("Token removido");
-    };
-
-    checkAuth();
-  }, []);
-
-  if (loading) {
-    // Mostra loading enquanto verifica o token
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
-  function handleLogout(event: GestureResponderEvent): void {
-    throw new Error("Function not implemented.");
-  }
+  // FUNCAO PARA FAZER LOUGOUT
+  // const handleLogout = async () => {
+  //   await AsyncStorage.removeItem("@token");  // remove token
+  //   router.replace("/(auth)/login");         // volta para login
+  // };
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
@@ -99,10 +60,6 @@ export default function Home() {
         contentContainerStyle={{ alignItems: "center", gap: 16 }}
       >
         <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
-        
-        <TouchableOpacity onPress={handleLogout}>
-          <Text>sair</Text>
-        </TouchableOpacity>
 
         <InputComponent
           placeholder="Pesquise a empresa"
@@ -121,82 +78,28 @@ export default function Home() {
         />
 
         {/* Cards agendamentos */}
-        <View
-          style={{
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <View
-            style={{
-              flex: 1,
-              width: "90%",
-              justifyContent: "center",
-              alignItems: "flex-start",
-            }}
-          >
-            <Text style={[styles.subtitle2, { color: text }]}>
-              Agendamentos
-            </Text>
+        <View style={{ width: "100%", alignItems: "center", justifyContent: "center" }}>
+          <View style={{ flex: 1, width: "90%", alignItems: "flex-start" }}>
+            <Text style={[styles.subtitle2, { color: text }]}>Agendamentos</Text>
           </View>
 
-          <View
-            style={{
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 8,
-              gap: 8,
-            }}
-          >
+          <View style={{ width: "100%", alignItems: "center", marginTop: 8, gap: 8 }}>
             {cards.map((card, index) => (
-              <CardComponent
-                image={card.image}
-                title={card.title}
-                date={card.date}
-                time={card.time}
-              />
+              <CardComponent key={index} {...card} />
             ))}
           </View>
         </View>
 
-        <View
-          style={{
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <View
-            style={{
-              flex: 1,
-              width: "90%",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              marginBottom: 16,
-            }}
-          >
-            <Text style={[styles.subtitle2, { color: text }]}>
-              Mais acessados
-            </Text>
+        {/* Mais acessados */}
+        <View style={{ width: "100%", alignItems: "center", justifyContent: "center" }}>
+          <View style={{ flex: 1, width: "90%", alignItems: "flex-start", marginBottom: 16 }}>
+            <Text style={[styles.subtitle2, { color: text }]}>Mais acessados</Text>
           </View>
 
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              gap: 16,
-              maxWidth: 420,
-              height: "auto",
-            }}
-          >
-
-            {profileCircle.map((profile) => (
-              <CircleComponent image={profile.image} />
+          <View style={{ flexDirection: "row", gap: 16, maxWidth: 420 }}>
+            {profileCircle.map((profile, index) => (
+              <CircleComponent key={index} image={profile.image} />
             ))}
-
-            
           </View>
         </View>
       </ScrollView>
@@ -205,9 +108,6 @@ export default function Home() {
     </View>
   );
 }
-
-
- 
 
 const styles = StyleSheet.create({
   container: {

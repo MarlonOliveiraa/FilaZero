@@ -16,7 +16,7 @@ export default function Index() {
         titulo="Iniciar"
         corFundo="background2"
         corTexto="text2"
-        funcao={() => push("/screens/login")}
+        funcao={() => push("/(auth)/login")}
       />
     </View>
   );

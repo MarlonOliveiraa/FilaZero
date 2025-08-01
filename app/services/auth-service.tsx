@@ -42,7 +42,7 @@ export async function handleRegister(
 
     if (data.success) {
       Alert.alert("Sucesso", "Cadastro realizado!");
-      push("/screens/login");
+      push("/(auth)/login");
     } else {
       Alert.alert("Erro", data.message || "Erro no cadastro");
     }
@@ -75,7 +75,7 @@ export async function Login(
           console.log("erro ao salvar token", error);
         }
 
-        push("/screens/home");
+        push("/(private)/home");
     } else {
       Alert.alert("Erro", data.message || "Falha no login");
     }

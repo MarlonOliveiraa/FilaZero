@@ -15,10 +15,10 @@ import {
 } from "react-native";
 
 const menuItems = [
-  { icon: require("@/assets/icons/home.png"), route: "screens/home" },
-  { icon: require("@/assets/icons/fila.png"), route: "screens/filas" },
-  { icon: require("@/assets/icons/search.png"), route: "screens/search" },
-  { icon: require("@/assets/icons/profile.png"), route: "screens/profile" },
+  { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
+  { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
+  { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
+  { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
 ];
 
 type Empresas = {
@@ -92,7 +92,7 @@ export default function Filas({ navigation }: any) {
       >
         <TouchableOpacity
           style={styles.botao}
-          onPress={() => push("../screens/home")}
+          onPress={() => push("/(private)/home")}
         >
           <Image source={require("@/assets/icons/arrowBack.png")} />
         </TouchableOpacity>
@@ -113,7 +113,7 @@ export default function Filas({ navigation }: any) {
               image={item.image}
               iconRedirect={item.iconRedirect}
               // onPress={() => push(`/screens/estabelecimento?id=${item.id}`)} CODIGO PRONTO PARA RECEBER O BACKEND
-              onPress={() => push(`/screens/home`)}
+              onPress={() => push(`/(private)/home`)}
             />
           )}
           numColumns={2}

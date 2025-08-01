@@ -8,11 +8,11 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 const menuItems = [
-    { icon: require('@/assets/icons/home.png'), route: 'screens/home' }, 
-    { icon: require('@/assets/icons/fila.png'), route: 'screens/filas' }, 
-    { icon: require('@/assets/icons/search.png'), route: 'screens/search' }, 
-    { icon: require('@/assets/icons/profile.png'), route: 'screens/profile' }, 
-]
+    { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
+    { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
+    { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
+    { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
+];
 
 type props = {
     titulo: string;
@@ -98,7 +98,7 @@ type props = {
                     titulo="Retirar senha digital"
                     corFundo="background2"
                     corTexto="text2"
-                    funcao={() => push('/screens/confirmPassword')}
+                    funcao={() => push('/(auth)/confirmPassword')}
                 />
             </View>
 
