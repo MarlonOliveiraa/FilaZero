@@ -58,7 +58,7 @@ export default function ScreenLogin() {
       {/* botao para testar fluxo */}
       <BotaoComponent
         titulo="Não tem uma conta? Cadastre-se"
-        funcao={() => push("/screens/singUp")}
+        funcao={() => push("/(auth)/singUp")}
       />
     </View>
   );
