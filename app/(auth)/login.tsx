@@ -1,7 +1,6 @@
 import BotaoComponent from "@/components/ui/botao-component";
 import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { push } from "expo-router/build/global-state/routing";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Login } from "../services/auth-service";
@@ -52,14 +51,9 @@ export default function ScreenLogin() {
         </Text>
       </View>
       <BotaoComponent titulo="Entrar" funcao={() => Login(email, senha)} />
-      {/* <Text style={[styles.cadastro, { color: text }]}>
+      <Text style={[styles.cadastro, { color: text }]}>
         Não tem uma conta? Cadastre-se
-      </Text> */}
-      {/* botao para testar fluxo */}
-      <BotaoComponent
-        titulo="Não tem uma conta? Cadastre-se"
-        funcao={() => push("/(auth)/singUp")}
-      />
+      </Text>
     </View>
   );
 }

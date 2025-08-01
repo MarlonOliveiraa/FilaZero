@@ -10,8 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 require_once __DIR__ . "/../app/controllers/auth-controller.php";
+require_once __DIR__ . "/../app/controllers/enterprise-controller.php";
 
 $auth = new AuthController();
+$enterprise = new Enterprise();
 
 $basePath = '/FilaZero/backend/public';
 
@@ -41,7 +43,20 @@ if ($method === 'POST' && $uri === '/register') {
 if ($method === 'POST' && $uri === '/login') {
     $auth->login();
     exit;
-} 
+}
+
+if ($method === 'GET' && $uri === '/search') {
+    $enterprise->searchEnterprise();
+    exit;
+} else {
+    return json_encode(
+        [
+            'success' => false,
+            'message' => 'endpoint de busca nao encontrado',
+        ],
+        404
+    );
+}
 
 http_response_code(404);
 echo json_encode(['message' => 'Rota não encontrada', 'uri' => $uri]);

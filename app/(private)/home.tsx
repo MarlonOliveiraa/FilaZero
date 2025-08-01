@@ -1,12 +1,14 @@
 import CardComponent, { Card } from "@/components/ui/card-component";
-import CircleComponent, { ProfileCircle } from "@/components/ui/circle-component";
+import CircleComponent, {
+  ProfileCircle,
+} from "@/components/ui/circle-component";
 import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import React from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { searchEnterprise } from "../services/enterprise-service";
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
@@ -42,6 +44,21 @@ export default function Home() {
   const text = useThemeColor("text");
   const router = useRouter();
 
+  const [search, setSearch] = useState("");
+  const [empresas, setEmpresas] = useState<any[]>([]);
+
+  const handleSearch = async (query: string) => {
+    setSearch(query);
+
+    // só busca quando tiver mais de 2 letras
+    if (query.length > 2) {
+      const result = await searchEnterprise(query);
+      setEmpresas(result || []);
+    } else {
+      setEmpresas([]);
+    }
+  };
+
   // FUNCAO PARA FAZER LOUGOUT
   // const handleLogout = async () => {
   //   await AsyncStorage.removeItem("@token");  // remove token
@@ -63,8 +80,20 @@ export default function Home() {
 
         <InputComponent
           placeholder="Pesquise a empresa"
-          keyboardType="email-address"
-          icon={require("@/assets/icons/email.png")}
+          keyboardType="web-search"
+          icon={require("@/assets/icons/search.png")}
+          onChangeText={handleSearch}
+        />
+
+        <FlatList
+          data={empresas}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <Text style={{ padding: 10 }}>{item.nome}</Text>
+          )}
+          ListEmptyComponent={
+            search.length > 2 ? <Text>Nenhuma empresa encontrada</Text> : null
+          }
         />
 
         {/* AQUI VAI O MAPA */}
@@ -78,12 +107,27 @@ export default function Home() {
         />
 
         {/* Cards agendamentos */}
-        <View style={{ width: "100%", alignItems: "center", justifyContent: "center" }}>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <View style={{ flex: 1, width: "90%", alignItems: "flex-start" }}>
-            <Text style={[styles.subtitle2, { color: text }]}>Agendamentos</Text>
+            <Text style={[styles.subtitle2, { color: text }]}>
+              Agendamentos
+            </Text>
           </View>
 
-          <View style={{ width: "100%", alignItems: "center", marginTop: 8, gap: 8 }}>
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              marginTop: 8,
+              gap: 8,
+            }}
+          >
             {cards.map((card, index) => (
               <CardComponent key={index} {...card} />
             ))}
@@ -91,9 +135,24 @@ export default function Home() {
         </View>
 
         {/* Mais acessados */}
-        <View style={{ width: "100%", alignItems: "center", justifyContent: "center" }}>
-          <View style={{ flex: 1, width: "90%", alignItems: "flex-start", marginBottom: 16 }}>
-            <Text style={[styles.subtitle2, { color: text }]}>Mais acessados</Text>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              width: "90%",
+              alignItems: "flex-start",
+              marginBottom: 16,
+            }}
+          >
+            <Text style={[styles.subtitle2, { color: text }]}>
+              Mais acessados
+            </Text>
           </View>
 
           <View style={{ flexDirection: "row", gap: 16, maxWidth: 420 }}>

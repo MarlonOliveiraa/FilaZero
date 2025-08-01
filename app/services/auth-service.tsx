@@ -3,8 +3,7 @@ import { push } from "expo-router/build/global-state/routing";
 import { Alert } from "react-native";
 
 // URL BASE:
-const API_URL = "http://localhost/FilaZero/backend/public/index.php";
-
+import { API_URL } from "@/config";
 interface LoginResponse {
   success: boolean;
   message: string;
@@ -53,7 +52,7 @@ export async function handleRegister(
 
 export async function Login(
   email: string,
-  senha: string,
+  senha: string
 ): Promise<LoginResponse> {
   try {
     const response = await fetch(`${API_URL}/login`, {
@@ -66,17 +65,17 @@ export async function Login(
 
     if (data.success && data.token) {
       Alert.alert("Login feito com sucesso");
-      
-        try {
-          await AsyncStorage.setItem("@token", data.token);
-          const tokenRecebido = await AsyncStorage.getItem("@token");
-          console.log("Token salvo:", tokenRecebido);
-        } catch (error) {
-          console.log("erro ao salvar token", error);
-        }
 
-        push("/(private)/home");
-    } else {
+      try {
+        await AsyncStorage.setItem("@token", data.token);
+        const tokenRecebido = await AsyncStorage.getItem("@token");
+        console.log("Token salvo:", tokenRecebido);
+      } catch (error) {
+        console.log("erro ao salvar token", error);
+      }
+
+      push("/(private)/home");
+    } else {  
       Alert.alert("Erro", data.message || "Falha no login");
     }
 
