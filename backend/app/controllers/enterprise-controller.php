@@ -14,6 +14,9 @@ class Enterprise
         $data = json_decode(file_get_contents('php://input'), true);
         $nome = $data['nome'] ?? '';
 
+        file_put_contents('log.txt', "searchEnterprise executado com nome: $nome\n", FILE_APPEND);
+
+
         if (!$nome) {
             return $this->jsonResponse(
                 [
@@ -24,13 +27,14 @@ class Enterprise
             );
         }
 
-        $resultados = Enterprise::searchByEnterprise($nome);
+        $resultados = EnterpriseModel::searchByEnterprise($nome);
 
         if ($resultados) {
             return $this->jsonResponse(
                 [
                     'success' => true,
                     'message' => 'empresa encontrada',
+                    'debug' => 'rota searchEnterprise chegou',
                     'data' => $resultados,  // Retornar os dados encontrados
                 ]
             );

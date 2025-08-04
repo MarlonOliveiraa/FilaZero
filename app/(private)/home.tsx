@@ -8,7 +8,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
-import { searchEnterprise } from "../services/enterprise-service";
+import { searchEnterprise } from "../../services/enterprise-service";
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
@@ -53,6 +53,7 @@ export default function Home() {
     // só busca quando tiver mais de 2 letras
     if (query.length > 2) {
       const result = await searchEnterprise(query);
+      console.log(result);
       setEmpresas(result || []);
     } else {
       setEmpresas([]);

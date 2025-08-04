@@ -1,6 +1,6 @@
 <?php
 
-class Enterprise
+class EnterpriseModel
 {
     public static function searchByEnterprise($nome)
     {

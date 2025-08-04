@@ -3,7 +3,7 @@ import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Login } from "../services/auth-service";
+import { Login } from "../../services/auth-service";
 
 export default function ScreenLogin() {
   const text = useThemeColor("text");

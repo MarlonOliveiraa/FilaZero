@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -15,7 +19,7 @@ require_once __DIR__ . "/../app/controllers/enterprise-controller.php";
 $auth = new AuthController();
 $enterprise = new Enterprise();
 
-$basePath = '/FilaZero/backend/public';
+$basePath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
@@ -45,17 +49,9 @@ if ($method === 'POST' && $uri === '/login') {
     exit;
 }
 
-if ($method === 'GET' && $uri === '/search') {
+if ($method === 'POST' && $uri === '/search') {
     $enterprise->searchEnterprise();
     exit;
-} else {
-    return json_encode(
-        [
-            'success' => false,
-            'message' => 'endpoint de busca nao encontrado',
-        ],
-        404
-    );
 }
 
 http_response_code(404);

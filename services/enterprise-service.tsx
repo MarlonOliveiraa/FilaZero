@@ -10,6 +10,7 @@ export async function searchEnterprise(nome: string) {
       },
       body: JSON.stringify({ nome }),
     });
+    console.log(API_URL);
 
     const data = await response.json();
     return data;
