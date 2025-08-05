@@ -3,13 +3,14 @@ import CircleComponent, {
   ProfileCircle,
 } from "@/components/ui/circle-component";
 import InputComponent from "@/components/ui/input-component";
+import MapComponent from "@/components/ui/map-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { Enterprise } from "@/interfaces/enterprise-interface";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { searchEnterprise } from "../../services/enterprise-service";
-
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
   { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
@@ -37,6 +38,27 @@ const profileCircle: ProfileCircle[] = [
   { image: require("@/assets/images/logo1.png") },
   { image: require("@/assets/images/logo1.png") },
   { image: require("@/assets/images/logo1.png") },
+];
+
+const empresas: Enterprise[] = [
+  {
+    id: "1",
+    nome: "Hospital Central",
+    localizacao_lat: "-23.55052",
+    localizacao_lng: "-46.633308",
+  },
+  {
+    id: "2",
+    nome: "Hospital Santa Luzia",
+    localizacao_lat: "-23.56789",
+    localizacao_lng: "-46.64012",
+  },
+  {
+    id: "3",
+    nome: "Clínica Vida Saudável",
+    localizacao_lat: "-23.55987",
+    localizacao_lng: "-46.65022",
+  },
 ];
 
 export default function Home() {
@@ -99,12 +121,16 @@ export default function Home() {
 
         {/* AQUI VAI O MAPA */}
         <View
+          
           style={{
             width: "90%",
             height: 200,
             backgroundColor: "#3d3d3dff",
             borderRadius: 16,
           }}
+        />
+
+        <MapComponent empresas={empresas}          
         />
 
         {/* Cards agendamentos */}

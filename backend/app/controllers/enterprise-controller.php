@@ -16,7 +16,6 @@ class Enterprise
 
         file_put_contents('log.txt', "searchEnterprise executado com nome: $nome\n", FILE_APPEND);
 
-
         if (!$nome) {
             return $this->jsonResponse(
                 [
@@ -29,24 +28,12 @@ class Enterprise
 
         $resultados = EnterpriseModel::searchByEnterprise($nome);
 
-        if ($resultados) {
-            return $this->jsonResponse(
-                [
-                    'success' => true,
-                    'message' => 'empresa encontrada',
-                    'debug' => 'rota searchEnterprise chegou',
-                    'data' => $resultados,  // Retornar os dados encontrados
-                ]
-            );
-        } else {
-            // Retorna lista vazia se não encontrar
-            return $this->jsonResponse(
-                [
-                    'success' => true,
-                    'message' => 'nenhuma empresa encontrada',
-                    'data' => [],
-                ]
-            );
-        }
+        return $this->jsonResponse(
+            [
+                'success' => true,
+                'message' => count($resultados) ? 'empresas encontradas' : 'nenhuma empresa encontrada',
+                'data' => $resultados
+            ]
+        );
     }
 }

@@ -1,21 +1,25 @@
 import { API_URL } from "@/config";
 
 export async function searchEnterprise(nome: string) {
-  console.log("Enviando para backend:", JSON.stringify({ nome }));
   try {
     const response = await fetch(`${API_URL}/search`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome }),
     });
-    console.log(API_URL);
 
-    const data = await response.json();
-    return data;
+    if (!response.ok) {
+      console.log("Erro na API", await response.text());
+      return [];
+    }
+
+    const text = await response.text();
+    if (!text) return [];
+    
+    
   } catch (error) {
-    console.log("Erro ao buscar empresas:", error);
+    console.error("Erro ao buscar empresas:", error);
     return [];
   }
 }
+
