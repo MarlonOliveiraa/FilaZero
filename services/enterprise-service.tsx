@@ -8,6 +8,8 @@ export async function searchEnterprise(nome: string) {
       body: JSON.stringify({ nome }),
     });
 
+    console.log(response);
+
     if (!response.ok) {
       console.log("Erro na API", await response.text());
       return [];
@@ -15,11 +17,8 @@ export async function searchEnterprise(nome: string) {
 
     const text = await response.text();
     if (!text) return [];
-    
-    
   } catch (error) {
     console.error("Erro ao buscar empresas:", error);
     return [];
   }
 }
-
