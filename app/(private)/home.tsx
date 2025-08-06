@@ -3,7 +3,6 @@ import CircleComponent, {
   ProfileCircle,
 } from "@/components/ui/circle-component";
 import InputComponent from "@/components/ui/input-component";
-import MapComponent from "@/components/ui/map-component.web";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Enterprise } from "@/interfaces/enterprise-interface";
@@ -27,18 +26,18 @@ const cards: Card[] = [
     time: "10:00",
   },
   {
-    image: require("@/assets/images/CASSEMS-2.png"),
+    image: require("@/assets/images/banco-brasil.png"),
     title: "testando card",
-    date: "10/07/0303",
+    date: "10/08/2025",
     time: "10:00",
   },
 ];
 
 const profileCircle: ProfileCircle[] = [
   { image: require("@/assets/images/logo1.png") },
-  { image: require("@/assets/images/logo1.png") },
-  { image: require("@/assets/images/logo1.png") },
-  { image: require("@/assets/images/logo1.png") },
+  { image: require("@/assets/images/unimed.png") },
+  { image: require("@/assets/images/banco-brasil.png") },
+  { image: require("@/assets/images/caixa.png") },
 ];
 
 const empresas: Enterprise[] = [
@@ -105,7 +104,7 @@ export default function Home() {
         <InputComponent
           placeholder="Pesquise a empresa"
           keyboardType="web-search"
-          icon={require("@/assets/icons/search.png")}
+          icon={require("@/assets/icons/search-dark.png")}
           onChangeText={handleSearch}
         />
 

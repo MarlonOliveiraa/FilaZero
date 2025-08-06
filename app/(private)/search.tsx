@@ -38,8 +38,7 @@ const dados: Empresas[] = [
   },
   {
     id: 2,
-    image:
-      "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
+    image: require("@/assets/images/unimed.png"),
     iconRedirect: require("@/assets/icons/external-link.png"),
   },
   {

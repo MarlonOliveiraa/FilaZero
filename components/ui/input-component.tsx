@@ -19,7 +19,7 @@ export default function InputComponent({
   className,
   ...rest
 }: Props) {
-  const text = useThemeColor('text');
+  const text = useThemeColor("text");
   // const background = useThemeColor('background');
   // const primary = useThemeColor('primary');
   // const secondary = useThemeColor('secondary');
@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 12,
+  
   },
 });
