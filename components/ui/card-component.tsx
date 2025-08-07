@@ -75,6 +75,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     color: "#000000",
     marginBottom: 4,
+    fontFamily: "PoppinsRegular",
   },
 
   info: {

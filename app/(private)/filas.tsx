@@ -1,15 +1,14 @@
-import InputComponent from "@/components/ui/input-component";
 import Menucomponent from "@/components/ui/menu-component";
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 const menuItems = [
-        { icon: require('@/assets/icons/home.png'), route: 'screens/home' }, 
-        { icon: require('@/assets/icons/fila.png'), route: 'screens/filas' }, 
-        { icon: require('@/assets/icons/search.png'), route: 'screens/search' }, 
-        { icon: require('@/assets/icons/profile.png'), route: 'screens/profile' }, 
-    ]
+    { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
+    { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
+    { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
+    { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
+];
 
 export default function Filas() {
     const background = useThemeColor('background');

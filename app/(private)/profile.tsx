@@ -1,0 +1,52 @@
+import Menucomponent from "@/components/ui/menu-component";
+import { useThemeColor } from '@/hooks/useThemeColor';
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+
+const menuItems = [
+    { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
+    { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
+    { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
+    { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
+];
+    
+    export default function Profile() {
+        const background = useThemeColor('background');
+        const text = useThemeColor('text');
+    
+    return (
+        <View style={[styles.container, { backgroundColor: background}]}>
+            <View>
+                {/* Foto perfil */}
+                <View>
+                    <Image 
+                        style={{width: 120, height: 120}}
+                        source={require('@/assets/icons/avatar-user.png')}/>
+                </View>
+            </View>
+
+            <Menucomponent 
+                items={menuItems}
+            />
+        </View>
+    );
+}
+
+const styles = StyleSheet.create ({
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        gap: 16,
+    },
+    text: {
+        fontSize: 48,
+        fontFamily: 'PoppinsRegular',
+        lineHeight: 60,
+    },
+    subtitle: {
+        fontSize: 12,
+        fontFamily: 'PoppinsRegular',
+        marginBottom: 72,
+    },
+});

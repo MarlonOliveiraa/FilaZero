@@ -68,7 +68,7 @@ export default function Home() {
           <InputComponent
             placeholder="Pesquise a empresa"
             keyboardType="email-address"
-            icon={require("@/assets/icons/email.png")}
+            icon={require("@/assets/icons/search-dark.png")}
             />
         </View>
 
