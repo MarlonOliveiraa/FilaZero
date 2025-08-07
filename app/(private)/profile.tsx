@@ -18,7 +18,7 @@ const options = [
   { label: "Empresas parceiras", route: "/perfil/empresas" },
   { label: "Termos de uso", route: "/perfil/termos" },
   { label: "Política de privacidade", route: "/perfil/politica" },
-  { label: "Sobre a TempoZero", route: "/perfil/sobre" },
+  { label: "Sobre a Fila Zero", route: "/perfil/sobre" },
 ];
 
 export default function ProfileScreen() {
