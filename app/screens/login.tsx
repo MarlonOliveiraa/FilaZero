@@ -14,7 +14,7 @@ export default function Login() {
 
     return (
         <View style={[styles.container, {backgroundColor: background }]}>
-            <View style={{alignItems: "flex-start", width: "90%"}}>
+            <View style={{alignItems: "flex-start", width: "90%", justifyContent: "center", maxWidth: 300}}>
                 <Text style={[styles.text, {color: text}]}>Entre com <br/>sua conta</Text>
                 <Text style={[styles.subtitle, {color: text}]}>Faça login para continuar.</Text>
 

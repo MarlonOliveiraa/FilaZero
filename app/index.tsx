@@ -10,14 +10,14 @@ export default function Index() {
 
     return (
         <View style={[styles.container, { backgroundColor: background }]}>
-            <Text style={[styles.text, { color: text }]}>Tempo Zero</Text>
+            <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
 
-            <View style={{width: '90%'}}>
+            <View style={{width: '90%', justifyContent: 'center', alignItems: 'center'}}>
                 <BotaoComponent
                     titulo="Iniciar"
                     corFundo="background2"
                     corTexto="text2"
-                    funcao={() => push('/screens/home')}
+                    funcao={() => push('/screens/login')}
                 />
             </View>
         </View>
