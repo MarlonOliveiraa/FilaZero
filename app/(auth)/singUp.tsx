@@ -3,8 +3,7 @@ import InputComponent from "@/components/ui/input-component";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { handleRegister } from "../services/auth-service";
-
+import { handleRegister } from "../../services/auth-service";
 
 export default function SignUp() {
   const text = useThemeColor("text");
@@ -18,7 +17,6 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
-
 
   return (
     <View style={[styles.container, { backgroundColor: background }]}>
@@ -63,8 +61,12 @@ export default function SignUp() {
         icon={require("@/assets/icons/senha.png")}
       />
 
-      <BotaoComponent titulo="Cadastrar" funcao={() => handleRegister(nome, telefone, email, senha, confirmaSenha)} />
-
+      <BotaoComponent
+        titulo="Cadastrar"
+        funcao={() =>
+          handleRegister(nome, telefone, email, senha, confirmaSenha)
+        }
+      />
 
       <Text style={[styles.entrar, { color: text }]}>
         Já tem uma conta? Entrar

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Font from "expo-font";
-import { Slot, Stack, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 
@@ -40,9 +40,5 @@ export default function PrivateLayout() {
     );
   }
 
-  return (
-    <Stack>
-      <Slot />
-    </Stack>
-  );
+  return <Stack />;
 }
