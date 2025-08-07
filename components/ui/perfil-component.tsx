@@ -1,13 +1,20 @@
 import { Image, StyleSheet, View } from "react-native";
 
-type PerfilComponent = {
-  image: any;
+type PerfilComponentProps = {
+  image: number | { uri: string } | null;
 };
 
-export default function PerfilComponent({ image }: PerfilComponent) {
+export default function PerfilComponent({ image }: PerfilComponentProps) {
+  const source =
+    typeof image === "string"
+      ? { uri: image }
+      : image
+      ? image
+      : require("@/assets/images/image-cassems.png"); // imagem padrão fallback
+
   return (
     <View style={styles.shadowContainer}>
-      <Image style={styles.image} source={image} resizeMode="cover" />
+      <Image style={styles.image} source={source} resizeMode="cover" />
     </View>
   );
 }

@@ -1,13 +1,14 @@
 import {
   GestureResponderEvent,
   Image,
+  ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
   View,
 } from "react-native";
 
 type Props = {
-  image: any;
+  image: ImageSourcePropType;
   iconRedirect: any;
   onPress?: (event: GestureResponderEvent) => void;
 };
@@ -20,7 +21,7 @@ export default function CardRedirectComponent({
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.imageWrapper} onPress={onPress}>
-        <Image source={{ uri: image }} style={styles.image} />
+        <Image source={image} style={styles.image} />
         <Image source={iconRedirect} style={styles.icon} />
       </TouchableOpacity>
     </View>
