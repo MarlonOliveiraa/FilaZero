@@ -13,7 +13,6 @@ import { searchEnterprise } from "../../services/enterprise-service";
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
-  { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
   { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
   { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
 ];
@@ -102,6 +101,7 @@ export default function Home() {
         <Text style={[styles.text, { color: text }]}>Fila Zero</Text>
 
         <InputComponent
+          style={{maxWidth: "80%"}}
           placeholder="Pesquise a empresa"
           keyboardType="web-search"
           icon={require("@/assets/icons/search-dark.png")}

@@ -15,7 +15,6 @@ import {
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
-  { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
   { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
   { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
 ];
@@ -66,6 +65,50 @@ const dadosMockados: Empresa[] = [
       "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
     iconRedirect: require("@/assets/icons/external-link.png"),
   },
+  {
+    id: 5,
+    nome: "Hospital Regional de Campo Grande",
+    descricao: "Referência em atendimento de alta complexidade.",
+    endereco:
+      "Rua Engenheiro Luthero Lopes, 36 - Aero Rancho, Campo Grande - MS",
+    image:
+      "https://www.hospital.ms.gov.br/wp-content/uploads/2023/01/hospital.png",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
+  {
+    id: 6,
+    nome: "Detran-MS",
+    descricao: "Serviços de habilitação, veículos e infrações.",
+    endereco: "Av. Gury Marques, 7155 - Cidade Morena, Campo Grande - MS",
+    image:
+      "https://midianews.com.br//arquivos/2022/08/17/7ef09a2cdd6c274b963805ff7336c4f7.jpg",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
+  {
+    id: 7,
+    nome: "Santa Casa de Campo Grande",
+    descricao: "Hospital com pronto-socorro e cirurgias especializadas.",
+    endereco: "Rua Eduardo Santos Pereira, 88 - Centro, Campo Grande - MS",
+    image:
+      "https://www.santacasacg.org.br/wp-content/uploads/2022/07/hospital.jpg",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
+  {
+    id: 8,
+    nome: "Poupatempo Municipal",
+    descricao: "Atendimento rápido para serviços públicos municipais.",
+    endereco: "Rua Marechal Rondon, 2650 - Amambaí, Campo Grande - MS",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Poupatempo.png",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
+  {
+    id: 9,
+    nome: "UBSF Tiradentes",
+    descricao: "Unidade Básica de Saúde com atendimento familiar.",
+    endereco: "Rua Marquês de Lavradio, 100 - Tiradentes, Campo Grande - MS",
+    image: "https://prefeitura.ms.gov.br/wp-content/uploads/ubsf.png",
+    iconRedirect: require("@/assets/icons/external-link.png"),
+  },
 ];
 
 export default function DetailBusiness() {
@@ -100,7 +143,7 @@ export default function DetailBusiness() {
         <View style={{ width: "90%", alignItems: "flex-start" }}>
           <TouchableOpacity
             style={{ flex: 1, paddingTop: 30 }}
-            onPress={() => router.push("/(private)/filas")}
+            onPress={() => router.push("/(private)/search")}
           >
             <Image source={require("@/assets/icons/arrowBack.png")} />
           </TouchableOpacity>
@@ -251,7 +294,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   scrollContent: {
-    paddingTop: 30,
+    paddingTop: 15,
     paddingBottom: 80,
     marginHorizontal: 12,
     alignItems: "center",

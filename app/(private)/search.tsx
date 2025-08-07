@@ -16,7 +16,6 @@ import {
 
 const menuItems = [
   { icon: require("@/assets/icons/home.png"), route: "/(private)/home" },
-  { icon: require("@/assets/icons/fila.png"), route: "/(private)/filas" },
   { icon: require("@/assets/icons/search.png"), route: "/(private)/search" },
   { icon: require("@/assets/icons/profile.png"), route: "/(private)/profile" },
 ];
@@ -42,7 +41,8 @@ const dadosMockados: Empresa[] = [
   {
     id: 2,
     nome: "Caixa Econômica Federal - Agência Centro",
-    descricao: "Agência movimentada com atendimentos para FGTS, Bolsa Família, habitação e serviços bancários em geral.",
+    descricao:
+      "Agência movimentada com atendimentos para FGTS, Bolsa Família, habitação e serviços bancários em geral.",
     endereco: "Rua 14 de Julho, 123 - Centro, Campo Grande - MS",
     image: require("@/assets/images/caixa.png"),
     iconRedirect: require("@/assets/icons/external-link.png"),
@@ -57,14 +57,15 @@ const dadosMockados: Empresa[] = [
   },
   {
     id: 4,
-    nome: "Detran-MS",
-    descricao: "Unidade do Detran responsável por CNH, emplacamentos e vistorias, com filas frequentes devido à alta procura por serviços presenciais.",
-    endereco: "Av. Gury Marques, 7155 - Cidade Morena, Campo Grande - MS",
-    image: "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
+    nome: "Laboratório Alfa",
+    descricao: "Exames laboratoriais com agendamento online.",
+    endereco:
+      "Av Ernesto Geisel, 321 - Bairro São Francisco, Campo Grande - MS",
+    image:
+      "https://t.ctcdn.com.br/55l-VCvM_3sCA7Ha9VHzsnZsKQk=/600x600/smart/i535351.jpeg",
     iconRedirect: require("@/assets/icons/external-link.png"),
   },
 ];
-
 export default function Filas() {
   const background = useThemeColor("background");
   const router = useRouter();
