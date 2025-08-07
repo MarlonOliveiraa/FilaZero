@@ -21,13 +21,13 @@ const menuItems = [
 const cards: Card[] = [
   {
     image: require("@/assets/images/CASSEMS-2.png"),
-    title: "testando card",
+    title: "Cassems",
     date: "10/07/0303",
     time: "10:00",
   },
   {
     image: require("@/assets/images/banco-brasil.png"),
-    title: "testando card",
+    title: "Banco do Brasil SA",
     date: "10/08/2025",
     time: "10:00",
   },
